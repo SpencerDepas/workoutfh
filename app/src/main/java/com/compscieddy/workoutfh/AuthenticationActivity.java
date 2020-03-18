@@ -60,6 +60,20 @@ public class AuthenticationActivity extends AppCompatActivity {
   }
 
   @Override
+  protected void onStart() {
+    super.onStart();
+    mAuth.addAuthStateListener(mAuthStateListener);
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    if (mAuthStateListener != null) {
+      mAuth.removeAuthStateListener(mAuthStateListener);
+    }
+  }
+
+  @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     Timber.d("onActivityResult()");
