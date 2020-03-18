@@ -15,8 +15,8 @@ public class BaseActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     initTheme();
     super.onCreate(savedInstanceState);
-    if (Authentication.isLoggedOut()) {
-      Authentication.handleLoggedOutUser(this);
+    if (AuthenticationHelper.isLoggedOut()) {
+      AuthenticationHelper.handleLoggedOutUser(this);
     }
   }
 

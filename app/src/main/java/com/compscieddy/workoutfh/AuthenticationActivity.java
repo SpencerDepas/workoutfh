@@ -1,19 +1,29 @@
 package com.compscieddy.workoutfh;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import com.compscieddy.eddie_utils.etil.Etil;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+
+import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
+import static android.view.View.VISIBLE;
 import static com.compscieddy.workoutfh.Analytics.AUTHENTICATION_BUTTON;
 import static com.compscieddy.workoutfh.PreferenceConstants.FIRST_LOGIN_MILLIS;
 
@@ -38,11 +49,6 @@ public class AuthenticationActivity extends AppCompatActivity {
   @BindView(R.id.sign_in_button) SignInButton mGoogleLoginButton;
   @BindView(R.id.loading_screen) View mLoadingScreen;
 
-  public static void launch(Activity activity) {
-    Intent intent = new Intent(activity, AuthenticationActivity.class);
-    activity.startActivity(intent);
-  }
-
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,6 +57,67 @@ public class AuthenticationActivity extends AppCompatActivity {
     Analytics.track(Analytics.AUTHENTICATION_SCREEN);
     init();
     setListeners();
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    Timber.d("onActivityResult()");
+
+    switch (requestCode) {
+      case REQUEST_CODE_RESOLVE_CONNECTION:
+        Crashes.log("Request Code REQUEST_CODE_RESOLVE_CONNECTION");
+        if (resultCode == RESULT_OK) {
+          mGoogleClient.connect();
+        }
+        break;
+      case REQUEST_CODE_SIGN_IN:
+        GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+        Timber.d("REQUEST_CODE_SIGN_IN status: " + result.getStatus() + " status code: " + result.getStatus().getStatusCode());
+        if (result.isSuccess()) {
+          Timber.d("Google sign-in was successful");
+          // Google Sign In was successful, authenticate with Firebase
+          GoogleSignInAccount account = result.getSignInAccount();
+          firebaseAuthWithGoogle(account);
+        } else if (result.getStatus().getStatusCode() == 7) { // found out this magic constant through debugging
+          Etil.showToast(this, "Not detecting a network connection.");
+        } else {
+          Crashes.log("Found a non-successful google api sign-in case. Status: " + result.getStatus() + " status code: " + result.getStatus().getStatusCode());
+        }
+        showLoadingScreen();
+        break;
+    }
+  }
+
+  private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    Timber.d("firebaseAuthWithGoogle:" + acct.getId() + " /// " + acct.getIdToken());
+
+    AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    auth.signInWithCredential(credential)
+        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+          @Override
+          public void onComplete(@NonNull Task<AuthResult> task) {
+            Timber.d("signInWithCredential:onComplete:" + task.isSuccessful());
+
+            // If sign in fails, display a message to the user. If sign in succeeds
+            // the auth state listener will be notified and logic to handle the
+            // signed in user can be handled in the listener.
+            if (!task.isSuccessful()) {
+              Timber.d("signInWithCredential " + task.getException());
+              Crashes.logAndShowToast("Authentication Failed - Please Retry");
+
+              Handler handler = new Handler(Looper.getMainLooper());
+              handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                  AuthenticationActivity.this.finish();
+                }
+              }, 3000);
+            }
+          }
+        });
   }
 
   private void init() {
@@ -68,21 +135,26 @@ public class AuthenticationActivity extends AppCompatActivity {
         .build();
 
     mGoogleClient = new GoogleApiClient.Builder(this)
-        .enableAutoManage(this /* AuthenticationActivity */, new GoogleApiClient.OnConnectionFailedListener() {
-          @Override
-          public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-            Crash.log("onConnectionFailed() " + connectionResult);
-            if (connectionResult.hasResolution()) {
-              try {
-                connectionResult.startResolutionForResult(AuthenticationActivity.this, REQUEST_CODE_RESOLVE_CONNECTION);
-              } catch (IntentSender.SendIntentException e) {
-                Crash.log("Google connection could not be established for Google API Client");
-              }
-            }
-          }
-        } /* OnConnectionFailedListener */)
+        .enableAutoManage(this, getOnConnectionFailedListener())
         .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
         .build();
+  }
+
+  @NotNull
+  private GoogleApiClient.OnConnectionFailedListener getOnConnectionFailedListener() {
+    return new GoogleApiClient.OnConnectionFailedListener() {
+      @Override
+      public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Crashes.log("onConnectionFailed() " + connectionResult);
+        if (connectionResult.hasResolution()) {
+          try {
+            connectionResult.startResolutionForResult(AuthenticationActivity.this, REQUEST_CODE_RESOLVE_CONNECTION);
+          } catch (IntentSender.SendIntentException e) {
+            Crashes.log("Google connection could not be established for Google API Client");
+          }
+        }
+      }
+    };
   }
 
   private void setListeners() {
@@ -122,6 +194,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     saveUserToFirestoreThenForwardToMainActivity();
     saveFirstTimeLoginMillis();
+
+    ActivityHelper.launchActivity(this, MainActivity.class);
   }
 
   private void saveUserToFirestoreThenForwardToMainActivity() {
@@ -150,4 +224,9 @@ public class AuthenticationActivity extends AppCompatActivity {
       WorkoutFHApplication.setSharedPreferencesLong(FIRST_LOGIN_MILLIS, System.currentTimeMillis());
     }
   }
+
+  private void showLoadingScreen() {
+    mLoadingScreen.setVisibility(VISIBLE);
+  }
+
 }

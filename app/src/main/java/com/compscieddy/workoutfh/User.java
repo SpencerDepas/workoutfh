@@ -77,7 +77,7 @@ public class User {
         .addOnFailureListener(new OnFailureListener() {
           @Override
           public void onFailure(@NonNull Exception e) {
-            Crash.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
+            Crashes.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
           }
         });
   }
