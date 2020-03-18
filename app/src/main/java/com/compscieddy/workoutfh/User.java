@@ -3,8 +3,14 @@ package com.compscieddy.workoutfh;
 import android.content.Context;
 import android.content.Intent;
 
-import com.compscieddy.workoutfh.activity.AuthenticationActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import androidx.annotation.NonNull;
 
 public class User {
 
@@ -14,6 +20,13 @@ public class User {
   private String mPhotoUrl;
 
   public User() {}
+
+  public User(FirebaseUser firebaseUser) {
+    this(
+        firebaseUser.getEmail(),
+        firebaseUser.getDisplayName(),
+        firebaseUser.getPhotoUrl() == null ? "" : firebaseUser.getPhotoUrl().toString());
+  }
 
   public User(String email, String displayName, String photoUrl) {
     mEmail = email;
@@ -50,5 +63,22 @@ public class User {
       context.startActivity(intent);
     }
     return email;
+  }
+
+  void saveUserToFirestore(final Runnable onSuccessRunnable) {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    db.collection(USER_COLLECTION).document(getEmail()).set(User.this, SetOptions.merge())
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+          @Override
+          public void onSuccess(Void aVoid) {
+            onSuccessRunnable.run();
+          }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+          @Override
+          public void onFailure(@NonNull Exception e) {
+            Crash.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
+          }
+        });
   }
 }

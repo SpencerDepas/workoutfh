@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WorkoutFH</string>
+
+    <string name="firebase_web_client_id">459139243700-59nmtjqd93r6mo8vun5ds9sort8175vk.apps.googleusercontent.com</string>
 </resources>

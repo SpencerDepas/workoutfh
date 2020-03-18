@@ -35,7 +35,7 @@ public class WorkoutFHApplication extends Application {
   }
 
   public static SharedPreferences getSharedPreferences() {
-    SharedPreferences sharedPreferences = sApplicationContext.getSharedPreferences("cameranotes", Context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences = sApplicationContext.getSharedPreferences("workoutfh", Context.MODE_PRIVATE);
     return sharedPreferences;
   }
 
