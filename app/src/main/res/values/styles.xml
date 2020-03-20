@@ -1,5 +1,9 @@
 <resources>
-    
+
+    <style name="GodFragmentRootContainer">
+        <item name="android:paddingTop">@dimen/god_fragment_padding_top</item>
+    </style>
+
     <style name="TabHorizontalIcon">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">22dp</item>
