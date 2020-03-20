@@ -27,7 +27,8 @@
         app:itemBackground="?attr/bgPrimary"
         app:itemIconTint="?attr/fgPrimary"
         android:fitsSystemWindows="false"
-        app:itemTextColor="?attr/fgPrimary">
+        app:itemTextColor="?attr/fgPrimary"
+        >
         <include layout="@layout/sidebar_nav"/>
     </com.google.android.material.navigation.NavigationView>
 

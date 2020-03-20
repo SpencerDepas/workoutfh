@@ -209,7 +209,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     saveUserToFirestoreThenForwardToMainActivity();
     saveFirstTimeLoginMillis();
 
-    ActivityHelper.launchActivity(this, MainActivity.class);
+    ActivityHelper.launchActivityAndFinish(AuthenticationActivity.this, MainActivity.class);
   }
 
   private void saveUserToFirestoreThenForwardToMainActivity() {

@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity {
       @Override
       public void onClick(View view) {
         FirebaseAuth.getInstance().signOut();
-        ActivityHelper.launchActivity(MainActivity.this, AuthenticationActivity.class);
+        ActivityHelper.launchActivityAndFinish(MainActivity.this, AuthenticationActivity.class);
       }
     });
   }

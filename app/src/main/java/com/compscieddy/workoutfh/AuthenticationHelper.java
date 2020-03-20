@@ -11,7 +11,7 @@ public class AuthenticationHelper {
   }
 
   public static void handleLoggedOutUser(Activity activity) {
-    ActivityHelper.launchActivity(activity, AuthenticationActivity.class);
+    ActivityHelper.launchActivityAndFinish(activity, AuthenticationActivity.class);
   }
 
 }
