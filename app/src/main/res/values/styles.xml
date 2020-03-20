@@ -1,7 +1,11 @@
 <resources>
 
     <style name="GodFragmentRootContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:paddingTop">@dimen/god_fragment_padding_top</item>
+        <item name="android:paddingLeft">@dimen/god_fragment_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/god_fragment_padding_horizontal</item>
     </style>
 
     <style name="TabHorizontalIcon">
