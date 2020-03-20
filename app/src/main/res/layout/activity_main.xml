@@ -17,16 +17,19 @@
         android:paddingBottom="8dp"
         >
         <com.compscieddy.workoutfh.ColorImageView
+            android:id="@+id/first_god_fragment_icon"
             android:src="@drawable/ic_streamline_icon_cog_3"
             android:layout_weight="1"
             style="@style/TabHorizontalIcon"
             />
         <com.compscieddy.workoutfh.ColorImageView
+            android:id="@+id/second_god_fragment_icon"
             android:src="@drawable/ic_streamline_icon_controls_record"
             android:layout_weight="3"
             style="@style/TabHorizontalIcon"
             />
         <com.compscieddy.workoutfh.ColorImageView
+            android:id="@+id/third_god_fragment_icon"
             android:src="@drawable/ic_streamline_icon_check"
             android:layout_weight="1"
             style="@style/TabHorizontalIcon"

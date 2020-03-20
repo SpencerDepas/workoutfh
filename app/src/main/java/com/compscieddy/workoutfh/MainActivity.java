@@ -15,6 +15,9 @@ public class MainActivity extends BaseActivity {
   @BindView(R.id.logout_button) View mLogoutButton;
   @BindView(R.id.god_tab_layout) TabLayout mGodTabLayout;
   @BindView(R.id.god_view_pager) ViewPager mGodViewPager;
+  @BindView(R.id.first_god_fragment_icon) View mFirstGodFragmentIcon;
+  @BindView(R.id.second_god_fragment_icon) View mSecondGodFragmentIcon;
+  @BindView(R.id.third_god_fragment_icon) View mThirdGodFragmentIcon;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,24 @@ public class MainActivity extends BaseActivity {
       public void onClick(View view) {
         FirebaseAuth.getInstance().signOut();
         ActivityHelper.launchActivityAndFinish(MainActivity.this, AuthenticationActivity.class);
+      }
+    });
+    mFirstGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mGodViewPager.setCurrentItem(0);
+      }
+    });
+    mSecondGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mGodViewPager.setCurrentItem(1);
+      }
+    });
+    mThirdGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mGodViewPager.setCurrentItem(2);
       }
     });
   }
