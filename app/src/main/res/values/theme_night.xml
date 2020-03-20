@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="NightMode" parent="AppTheme.NoActionBar">
+    <style name="NightMode" parent="AppTheme">
         <item name="fgPrimary">@color/white</item>
         <item name="bgPrimary">@color/black</item>
 

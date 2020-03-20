@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DayMode" parent="AppTheme.NoActionBar">
+    <style name="DayMode" parent="AppTheme">
         <item name="fgPrimary">@color/black</item>
         <item name="bgPrimary">@color/white</item>
 

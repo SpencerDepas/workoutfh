@@ -9,22 +9,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/white_t80</item>​
         <item name="colorControlNormal">@color/white_t50</item>
-    </style>
 
-    <style name="AppTheme.BaseNoActionBar" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item><!-- gets rid of the black transparency of status bar for the drawer on lollipop+ -->
     </style>
-
-    <style name="AppTheme.NoActionBar" parent="AppTheme.BaseNoActionBar">
-        <!-- anything in here will initTimeMachineEntrypply to v21+ -->
-        <!-- alter the parent -->
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="Transparent" parent="DayMode">
         <!-- http://stackoverflow.com/a/2700683/4326052 -->
