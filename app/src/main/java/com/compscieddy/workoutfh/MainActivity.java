@@ -3,20 +3,25 @@ package com.compscieddy.workoutfh;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
   @BindView(R.id.logout_button) View mLogoutButton;
+  @BindView(R.id.god_tab_layout) TabLayout mGodTabLayout;
+  @BindView(R.id.god_view_pager) ViewPager mGodViewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(MainActivity.this);
+    init();
   }
 
   @Override
@@ -29,6 +34,12 @@ public class MainActivity extends BaseActivity {
   protected void onPause() {
     super.onPause();
     detachListeners();
+  }
+
+  private void init() {
+    mGodViewPager.setAdapter(new GodPagerAdapter(MainActivity.this, getSupportFragmentManager()));
+    mGodTabLayout.setupWithViewPager(mGodViewPager);
+    mGodViewPager.setCurrentItem(1);
   }
 
   private void attachListeners() {

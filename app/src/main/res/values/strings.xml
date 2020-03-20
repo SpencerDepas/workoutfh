@@ -7,4 +7,8 @@
 
     <string name="authentication_description">Create an account or login to start your workout from home.</string>
 
+    <string name="god_tab_1">Settings</string>
+    <string name="god_tab_2">Main</string>
+    <string name="god_tab_3">Third</string>
+
 </resources>
