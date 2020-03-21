@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ThirdGodFragment extends Fragment {
+public class TodoGodFragment extends Fragment {
 
   @Nullable
   @Override

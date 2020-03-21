@@ -3,15 +3,14 @@ package com.compscieddy.workoutfh;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class GodPagerAdapter extends FragmentPagerAdapter {
 
-  @StringRes
-  private static final int[] TAB_TITLES = new int[] {R.string.god_tab_1, R.string.god_tab_2, R.string.god_tab_3};
+  public static final int SETTINGS_POSITION = 0;
+  public static final int TODO_POSITION = 2;
 
   private final Context mContext;
 
@@ -24,13 +23,13 @@ public class GodPagerAdapter extends FragmentPagerAdapter {
   @Override
   public Fragment getItem(int position) {
     switch (position) {
-      case 0:
+      case SETTINGS_POSITION:
         return new SettingsGodFragment();
       case 1:
         return new MainGodFragment();
-      case 2:
+      case TODO_POSITION:
       default:
-        return new ThirdGodFragment();
+        return new TodoGodFragment();
     }
   }
 

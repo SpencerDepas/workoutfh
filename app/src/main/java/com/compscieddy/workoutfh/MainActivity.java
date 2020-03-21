@@ -3,21 +3,19 @@ package com.compscieddy.workoutfh;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
   @BindView(R.id.logout_button) View mLogoutButton;
-  @BindView(R.id.god_tab_layout) TabLayout mGodTabLayout;
   @BindView(R.id.god_view_pager) ViewPager mGodViewPager;
-  @BindView(R.id.first_god_fragment_icon) View mFirstGodFragmentIcon;
-  @BindView(R.id.second_god_fragment_icon) View mSecondGodFragmentIcon;
-  @BindView(R.id.third_god_fragment_icon) View mThirdGodFragmentIcon;
+  @BindView(R.id.settings_god_fragment_button) View mSettingsGodFragmentButton;
+  @BindView(R.id.todo_god_fragment_button) View mTodoGodFragmentButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,9 @@ public class MainActivity extends BaseActivity {
 
   private void init() {
     mGodViewPager.setAdapter(new GodPagerAdapter(MainActivity.this, getSupportFragmentManager()));
-    mGodTabLayout.setupWithViewPager(mGodViewPager);
     mGodViewPager.setCurrentItem(1);
+
+    setGodFragmentButtonsUnselected();
   }
 
   private void attachListeners() {
@@ -53,24 +52,54 @@ public class MainActivity extends BaseActivity {
         ActivityHelper.launchActivityAndFinish(MainActivity.this, AuthenticationActivity.class);
       }
     });
-    mFirstGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
+    mSettingsGodFragmentButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         mGodViewPager.setCurrentItem(0);
       }
     });
-    mSecondGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        mGodViewPager.setCurrentItem(1);
-      }
-    });
-    mThirdGodFragmentIcon.setOnClickListener(new View.OnClickListener() {
+    mTodoGodFragmentButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         mGodViewPager.setCurrentItem(2);
       }
     });
+    mGodViewPager.addOnPageChangeListener(new OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+      @Override
+      public void onPageSelected(int position) {
+        setGodFragmentButtonsUnselected();
+
+        // Highlight current god fragment, do nothing if on main screen
+        if (position == GodPagerAdapter.SETTINGS_POSITION) {
+          setGodFragmentButtonSelectedState(true, mSettingsGodFragmentButton);
+        } else if (position == GodPagerAdapter.TODO_POSITION) {
+          setGodFragmentButtonSelectedState(true, mTodoGodFragmentButton);
+        }
+      }
+
+      @Override
+      public void onPageScrollStateChanged(int state) {}
+    });
+  }
+
+  private void setGodFragmentButtonsUnselected() {
+    setGodFragmentButtonSelectedState(false, mSettingsGodFragmentButton);
+    setGodFragmentButtonSelectedState(false, mTodoGodFragmentButton);
+  }
+
+  private void setGodFragmentButtonSelectedState(boolean isSelected, View godFragmentButton) {
+    final float SELECTED_ALPHA = 1.0f;
+    final float UNSELECTED_ALPHA = 0.3f;
+    final float SELECTED_SCALE = 1.3f;
+    final float UNSELECTED_SCALE = 1.0f;
+
+    godFragmentButton.setAlpha(isSelected ? SELECTED_ALPHA : UNSELECTED_ALPHA);
+    godFragmentButton.animate()
+        .scaleX(isSelected ? SELECTED_SCALE : UNSELECTED_SCALE)
+        .scaleY(isSelected ? SELECTED_SCALE : UNSELECTED_SCALE);
   }
 
   private void detachListeners() {
