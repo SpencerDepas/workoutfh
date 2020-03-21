@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,15 +16,26 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/god_fragment_buttons_fade_gradient"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/god_fragments_button_row"
+        />
+
     <!-- Row of God Fragment Buttons -->
     <LinearLayout
         android:id="@+id/god_fragments_button_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:orientation="horizontal"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:clipToPadding="false"
         >
         <com.compscieddy.workoutfh.ColorImageView
@@ -46,14 +57,5 @@
             />
     </LinearLayout>
 
-    <com.compscieddy.workoutfh.FontTextView
-        android:id="@+id/logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Log Out"
-        android:background="@color/white_t30"
-        />
 
-</FrameLayout>
+</RelativeLayout>

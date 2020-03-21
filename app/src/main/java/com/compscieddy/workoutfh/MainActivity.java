@@ -3,8 +3,6 @@ package com.compscieddy.workoutfh;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import butterknife.BindView;
@@ -12,7 +10,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-  @BindView(R.id.logout_button) View mLogoutButton;
   @BindView(R.id.god_view_pager) ViewPager mGodViewPager;
   @BindView(R.id.settings_god_fragment_button) View mSettingsGodFragmentButton;
   @BindView(R.id.todo_god_fragment_button) View mTodoGodFragmentButton;
@@ -45,13 +42,6 @@ public class MainActivity extends BaseActivity {
   }
 
   private void attachListeners() {
-    mLogoutButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        FirebaseAuth.getInstance().signOut();
-        ActivityHelper.launchActivityAndFinish(MainActivity.this, AuthenticationActivity.class);
-      }
-    });
     mSettingsGodFragmentButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -74,9 +64,9 @@ public class MainActivity extends BaseActivity {
 
         // Highlight current god fragment, do nothing if on main screen
         if (position == GodPagerAdapter.SETTINGS_POSITION) {
-          setGodFragmentButtonSelectedState(true, mSettingsGodFragmentButton);
+          GodFragmentButtonHelper.setGodFragmentButtonSelectedState(true, mSettingsGodFragmentButton);
         } else if (position == GodPagerAdapter.TODO_POSITION) {
-          setGodFragmentButtonSelectedState(true, mTodoGodFragmentButton);
+          GodFragmentButtonHelper.setGodFragmentButtonSelectedState(true, mTodoGodFragmentButton);
         }
       }
 
@@ -86,23 +76,10 @@ public class MainActivity extends BaseActivity {
   }
 
   private void setGodFragmentButtonsUnselected() {
-    setGodFragmentButtonSelectedState(false, mSettingsGodFragmentButton);
-    setGodFragmentButtonSelectedState(false, mTodoGodFragmentButton);
-  }
-
-  private void setGodFragmentButtonSelectedState(boolean isSelected, View godFragmentButton) {
-    final float SELECTED_ALPHA = 1.0f;
-    final float UNSELECTED_ALPHA = 0.3f;
-    final float SELECTED_SCALE = 1.3f;
-    final float UNSELECTED_SCALE = 1.0f;
-
-    godFragmentButton.setAlpha(isSelected ? SELECTED_ALPHA : UNSELECTED_ALPHA);
-    godFragmentButton.animate()
-        .scaleX(isSelected ? SELECTED_SCALE : UNSELECTED_SCALE)
-        .scaleY(isSelected ? SELECTED_SCALE : UNSELECTED_SCALE);
+    GodFragmentButtonHelper.setGodFragmentButtonSelectedState(false, mSettingsGodFragmentButton);
+    GodFragmentButtonHelper.setGodFragmentButtonSelectedState(false, mTodoGodFragmentButton);
   }
 
   private void detachListeners() {
-    mLogoutButton.setOnClickListener(null);
   }
 }

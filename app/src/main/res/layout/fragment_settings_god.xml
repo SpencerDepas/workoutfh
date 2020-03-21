@@ -11,4 +11,18 @@
         android:text="Welcome to the settings god fragment"
         />
 
+    <com.compscieddy.workoutfh.FontTextView
+        android:id="@+id/logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="18sp"
+        android:text="Log Out"
+        android:background="@color/carbon_red_300"
+        />
+
 </LinearLayout>
