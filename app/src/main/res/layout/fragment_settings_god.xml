@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     style="@style/GodFragmentRootContainer"
     >
@@ -10,6 +11,8 @@
         android:layout_height="wrap_content"
         android:text="Welcome to the settings god fragment"
         />
+
+    <Space style="@style/SpaceHeight20dp"/>
 
     <com.compscieddy.workoutfh.FontTextView
         android:id="@+id/logout_button"
@@ -22,7 +25,9 @@
         android:paddingRight="20dp"
         android:textSize="18sp"
         android:text="Log Out"
+        android:textColor="@color/white_t80"
         android:background="@color/carbon_red_300"
+        app:fontface="avenir_next_demibold"
         />
 
 </LinearLayout>
