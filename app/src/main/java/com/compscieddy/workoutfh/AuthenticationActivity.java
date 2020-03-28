@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.view.View;
 
 import com.compscieddy.eddie_utils.etil.Etil;
+import com.compscieddy.workoutfh.model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

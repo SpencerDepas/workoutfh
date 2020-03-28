@@ -1,12 +1,15 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.model;
 
 import android.content.Context;
 import android.content.Intent;
 
+import com.compscieddy.workoutfh.AuthenticationActivity;
+import com.compscieddy.workoutfh.Crashes;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -15,6 +18,7 @@ import androidx.annotation.NonNull;
 public class User {
 
   public static final String USER_COLLECTION = "user";
+
   private String mEmail;
   private String mDisplayName;
   private String mPhotoUrl;
@@ -32,6 +36,27 @@ public class User {
     mEmail = email;
     mDisplayName = displayName;
     mPhotoUrl = photoUrl;
+  }
+
+  public CollectionReference getUserCollection() {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    return db.collection(USER_COLLECTION);
+  }
+
+  public void saveUserToFirestore(final Runnable onSuccessRunnable) {
+    getUserCollection().document(getEmail()).set(User.this, SetOptions.merge())
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+          @Override
+          public void onSuccess(Void aVoid) {
+            onSuccessRunnable.run();
+          }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+          @Override
+          public void onFailure(@NonNull Exception e) {
+            Crashes.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
+          }
+        });
   }
 
   public String getEmail() {
@@ -63,22 +88,5 @@ public class User {
       context.startActivity(intent);
     }
     return email;
-  }
-
-  void saveUserToFirestore(final Runnable onSuccessRunnable) {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    db.collection(USER_COLLECTION).document(getEmail()).set(User.this, SetOptions.merge())
-        .addOnSuccessListener(new OnSuccessListener<Void>() {
-          @Override
-          public void onSuccess(Void aVoid) {
-            onSuccessRunnable.run();
-          }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-          @Override
-          public void onFailure(@NonNull Exception e) {
-            Crashes.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
-          }
-        });
   }
 }
