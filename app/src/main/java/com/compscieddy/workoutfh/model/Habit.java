@@ -3,6 +3,7 @@ package com.compscieddy.workoutfh.model;
 import android.text.TextUtils;
 
 import com.compscieddy.workoutfh.Crashes;
+import com.compscieddy.workoutfh.util.FirestoreUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -24,7 +25,7 @@ public class Habit {
   public Habit() {}
 
   public Habit(String habitName, @Nullable String emojiCode) {
-    mId = generateId();
+    mId = FirestoreUtil.generateId(getHabitCollection());
     mHabitName = habitName;
 
     if (TextUtils.isEmpty(emojiCode)) {
@@ -33,13 +34,6 @@ public class Habit {
     mEmojiCode = emojiCode;
 
     mCreatedAtMillis = System.currentTimeMillis();
-  }
-
-  /**
-   * Generates new id for a habit.
-   */
-  private String generateId() {
-    return getHabitCollection().document().getId();
   }
 
   public CollectionReference getHabitCollection() {
