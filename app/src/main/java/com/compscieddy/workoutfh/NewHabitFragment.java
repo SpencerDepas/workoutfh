@@ -9,6 +9,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.EditText;
 
 import com.compscieddy.workoutfh.model.Habit;
+import com.compscieddy.workoutfh.ui.FloatingBaseFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,12 +37,12 @@ public class NewHabitFragment extends FloatingBaseFragment {
   }
 
   @Override
-  View getBlackBackground() {
+  public View getBlackBackground() {
     return mBlackBackground;
   }
 
   @Override
-  View getMainDialogContainer() {
+  public View getMainDialogContainer() {
     return mMainDialogContainer;
   }
 

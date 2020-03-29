@@ -1,11 +1,12 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.util;
 
 import com.compscieddy.eddie_utils.etil.Etil;
+import com.compscieddy.workoutfh.WorkoutFHApplication;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import timber.log.Timber;
 
-public class Crashes {
+public class CrashUtil {
 
   public static void log(String errorMessage) {
     Timber.e(errorMessage);

@@ -2,7 +2,7 @@ package com.compscieddy.workoutfh.model;
 
 import android.text.TextUtils;
 
-import com.compscieddy.workoutfh.Crashes;
+import com.compscieddy.workoutfh.util.CrashUtil;
 import com.compscieddy.workoutfh.util.FirestoreUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,7 +79,7 @@ public class Habit {
         .addOnFailureListener(new OnFailureListener() {
           @Override
           public void onFailure(@NonNull Exception e) {
-            Crashes.log("Failed to save habit with id: " + getId());
+            CrashUtil.log("Failed to save habit with id: " + getId());
           }
         });
   }

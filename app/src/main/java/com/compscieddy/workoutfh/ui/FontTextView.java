@@ -1,12 +1,13 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import com.compscieddy.workoutfh.R;
 import com.vanniktech.emoji.EmojiTextView;
 
-import static com.compscieddy.workoutfh.FontCache.AVENIR_NEXT_REGULAR;
+import static com.compscieddy.workoutfh.ui.FontCache.AVENIR_NEXT_REGULAR;
 
 /**
  * Created by elee on 1/6/16.

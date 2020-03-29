@@ -1,12 +1,13 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import com.compscieddy.workoutfh.R;
 import com.vanniktech.emoji.EmojiEditText;
 
-import static com.compscieddy.workoutfh.FontCache.MONTSERRAT_REGULAR;
+import static com.compscieddy.workoutfh.ui.FontCache.MONTSERRAT_REGULAR;
 
 /**
  * Created by elee on 1/7/16.

@@ -1,9 +1,9 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.util;
 
 import android.app.Activity;
 import android.content.Intent;
 
-public class ActivityHelper {
+public class ActivityUtil {
 
   public static void launchActivityAndFinish(Activity fromActivity, Class toActivity) {
     Intent intent = new Intent(fromActivity, toActivity);

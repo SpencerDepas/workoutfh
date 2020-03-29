@@ -1,5 +1,7 @@
 package com.compscieddy.workoutfh;
 
+import com.compscieddy.workoutfh.ui.FontCache;
+
 public class FontConstants {
 
   public static final String PREF_SELECTED_FONT = "pref_font";

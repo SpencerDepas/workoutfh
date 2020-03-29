@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.compscieddy.workoutfh.model.Habit;
 import com.compscieddy.workoutfh.model.HabitRecord;
+import com.compscieddy.workoutfh.ui.FloatingBaseFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,12 +58,12 @@ public class RecordHabitFragment extends FloatingBaseFragment {
   }
 
   @Override
-  View getBlackBackground() {
+  public View getBlackBackground() {
     return mRootView.findViewById(R.id.black_background);
   }
 
   @Override
-  View getMainDialogContainer() {
+  public View getMainDialogContainer() {
     return mRootView.findViewById(R.id.main_dialog_container);
   }
 

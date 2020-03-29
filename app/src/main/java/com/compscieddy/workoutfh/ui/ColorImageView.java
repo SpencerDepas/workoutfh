@@ -1,4 +1,4 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import com.compscieddy.eddie_utils.etil.ColorEtil;
+import com.compscieddy.workoutfh.R;
 
 import androidx.appcompat.widget.AppCompatImageView;
 

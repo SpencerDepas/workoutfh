@@ -1,7 +1,8 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.authentication;
 
 import android.app.Activity;
 
+import com.compscieddy.workoutfh.util.ActivityUtil;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AuthenticationHelper {
@@ -11,7 +12,7 @@ public class AuthenticationHelper {
   }
 
   public static void handleLoggedOutUser(Activity activity) {
-    ActivityHelper.launchActivityAndFinish(activity, AuthenticationActivity.class);
+    ActivityUtil.launchActivityAndFinish(activity, AuthenticationActivity.class);
   }
 
 }

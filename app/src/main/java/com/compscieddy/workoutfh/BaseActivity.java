@@ -2,6 +2,8 @@ package com.compscieddy.workoutfh;
 
 import android.os.Bundle;
 
+import com.compscieddy.workoutfh.authentication.AuthenticationHelper;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 

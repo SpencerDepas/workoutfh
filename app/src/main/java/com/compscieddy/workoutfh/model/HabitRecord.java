@@ -1,6 +1,6 @@
 package com.compscieddy.workoutfh.model;
 
-import com.compscieddy.workoutfh.Crashes;
+import com.compscieddy.workoutfh.util.CrashUtil;
 import com.compscieddy.workoutfh.util.DateUtil;
 import com.compscieddy.workoutfh.util.FirestoreUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,7 +70,7 @@ public class HabitRecord {
       }
     })
     .addOnFailureListener(e -> {
-      Crashes.log("Failed to save habit record with id: " + getId());
+      CrashUtil.log("Failed to save habit record with id: " + getId());
     });
   }
 

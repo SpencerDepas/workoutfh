@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import com.compscieddy.workoutfh.ui.FontCache;
+
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 
-import static com.compscieddy.workoutfh.FontCache.AVENIR_NEXT_REGULAR;
+import static com.compscieddy.workoutfh.ui.FontCache.AVENIR_NEXT_REGULAR;
 import static com.compscieddy.workoutfh.FontConstants.DEFAULT_FONT;
 import static com.compscieddy.workoutfh.FontConstants.PREF_SELECTED_FONT;
 

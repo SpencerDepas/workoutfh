@@ -3,8 +3,8 @@ package com.compscieddy.workoutfh.model;
 import android.content.Context;
 import android.content.Intent;
 
-import com.compscieddy.workoutfh.AuthenticationActivity;
-import com.compscieddy.workoutfh.Crashes;
+import com.compscieddy.workoutfh.authentication.AuthenticationActivity;
+import com.compscieddy.workoutfh.util.CrashUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,7 +56,7 @@ public class User {
         .addOnFailureListener(new OnFailureListener() {
           @Override
           public void onFailure(@NonNull Exception e) {
-            Crashes.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
+            CrashUtil.log("Failed to set the user in AuthenticationActivity e: " + e.toString());
           }
         });
   }

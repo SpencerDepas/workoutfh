@@ -1,4 +1,4 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.ui;
 
 import android.content.Context;
 import android.graphics.Typeface;

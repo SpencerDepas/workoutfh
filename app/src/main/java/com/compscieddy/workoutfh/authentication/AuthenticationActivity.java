@@ -1,4 +1,4 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.authentication;
 
 import android.content.Intent;
 import android.content.IntentSender;
@@ -8,7 +8,12 @@ import android.os.Looper;
 import android.view.View;
 
 import com.compscieddy.eddie_utils.etil.Etil;
+import com.compscieddy.workoutfh.Analytics;
+import com.compscieddy.workoutfh.MainActivity;
+import com.compscieddy.workoutfh.R;
+import com.compscieddy.workoutfh.WorkoutFHApplication;
 import com.compscieddy.workoutfh.model.User;
+import com.compscieddy.workoutfh.util.CrashUtil;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -83,7 +88,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     switch (requestCode) {
       case REQUEST_CODE_RESOLVE_CONNECTION:
-        Crashes.log("Request Code REQUEST_CODE_RESOLVE_CONNECTION");
+        CrashUtil.log("Request Code REQUEST_CODE_RESOLVE_CONNECTION");
         if (resultCode == RESULT_OK) {
           mGoogleClient.connect();
         }
@@ -99,7 +104,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         } else if (result.getStatus().getStatusCode() == 7) { // found out this magic constant through debugging
           Etil.showToast(this, "Not detecting a network connection.");
         } else {
-          Crashes.log("Found a non-successful google api sign-in case. Status: " + result.getStatus() + " status code: " + result.getStatus().getStatusCode());
+          CrashUtil.log("Found a non-successful google api sign-in case. Status: " + result.getStatus() + " status code: " + result.getStatus().getStatusCode());
         }
         showLoadingScreen();
         break;
@@ -123,7 +128,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             // signed in user can be handled in the listener.
             if (!task.isSuccessful()) {
               Timber.d("signInWithCredential " + task.getException());
-              Crashes.logAndShowToast("Authentication Failed - Please Retry");
+              CrashUtil.logAndShowToast("Authentication Failed - Please Retry");
 
               Handler handler = new Handler(Looper.getMainLooper());
               handler.postDelayed(new Runnable() {
@@ -162,12 +167,12 @@ public class AuthenticationActivity extends AppCompatActivity {
     return new GoogleApiClient.OnConnectionFailedListener() {
       @Override
       public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Crashes.log("onConnectionFailed() " + connectionResult);
+        CrashUtil.log("onConnectionFailed() " + connectionResult);
         if (connectionResult.hasResolution()) {
           try {
             connectionResult.startResolutionForResult(AuthenticationActivity.this, REQUEST_CODE_RESOLVE_CONNECTION);
           } catch (IntentSender.SendIntentException e) {
-            Crashes.log("Google connection could not be established for Google API Client");
+            CrashUtil.log("Google connection could not be established for Google API Client");
           }
         }
       }

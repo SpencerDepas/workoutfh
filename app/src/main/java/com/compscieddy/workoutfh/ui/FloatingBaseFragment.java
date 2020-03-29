@@ -1,9 +1,10 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.ui;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.compscieddy.eddie_utils.etil.Etil;
+import com.compscieddy.workoutfh.R;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -11,7 +12,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
-abstract class FloatingBaseFragment extends DialogFragment {
+public abstract class FloatingBaseFragment extends DialogFragment {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,9 +40,9 @@ abstract class FloatingBaseFragment extends DialogFragment {
     detachListeners();
   }
 
-  abstract View getBlackBackground();
+  public abstract View getBlackBackground();
 
-  abstract View getMainDialogContainer();
+  public abstract View getMainDialogContainer();
 
   private void attachListeners() {
     getBlackBackground().setOnClickListener(new View.OnClickListener() {

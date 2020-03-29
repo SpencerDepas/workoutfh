@@ -6,7 +6,7 @@
     style="@style/GodFragmentRootContainer"
     >
 
-    <com.compscieddy.workoutfh.FontTextView
+    <com.compscieddy.workoutfh.ui.FontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to the settings god fragment"
@@ -14,7 +14,7 @@
 
     <Space style="@style/SpaceHeight20dp"/>
 
-    <com.compscieddy.workoutfh.FontTextView
+    <com.compscieddy.workoutfh.ui.FontTextView
         android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
