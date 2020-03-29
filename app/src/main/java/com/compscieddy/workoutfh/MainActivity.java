@@ -3,6 +3,9 @@ package com.compscieddy.workoutfh;
 import android.os.Bundle;
 import android.view.View;
 
+import com.compscieddy.workoutfh.god.GodFragmentButtonHelper;
+import com.compscieddy.workoutfh.god.GodPagerAdapter;
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import butterknife.BindView;

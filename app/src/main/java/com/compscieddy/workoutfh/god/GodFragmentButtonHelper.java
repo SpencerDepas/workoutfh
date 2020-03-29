@@ -1,4 +1,4 @@
-package com.compscieddy.workoutfh;
+package com.compscieddy.workoutfh.god;
 
 import android.view.View;
 
