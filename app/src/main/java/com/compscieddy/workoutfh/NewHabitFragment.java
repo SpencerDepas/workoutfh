@@ -99,10 +99,17 @@ public class NewHabitFragment extends DialogFragment {
         dismissWithAnimation();
       }
     });
+    mBlackBackground.setOnClickListener(new View.OnClickListener() {
+        @Override
+      public void onClick(View v) {
+        dismissWithAnimation();
+      }
+    });
   }
 
   private void detachListeners() {
     mSubmitButton.setOnClickListener(null);
+    mBlackBackground.setOnClickListener(null);
   }
 
   private void dismissWithAnimation() {
