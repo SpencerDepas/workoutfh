@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,17 @@ public class Habit {
 
   public static final String HABIT_COLLECTION = "habit";
 
+  public static final String FIELD_ID = "id";
+  public static final String FIELD_USER_EMAIL = "userEmail";
+  public static final String FIELD_HABIT_NAME = "habitName";
+  public static final String FIELD_EMOJI_CODE = "emojiCode";
+  public static final String FIELD_CREATED_AT_MILLIS = "createdAtMillis";
+
+  private String mId;
+  private String mUserEmail;
   private String mHabitName;
   private String mEmojiCode;
   private long mCreatedAtMillis;
-  private String mId;
-  private String mUserEmail;
 
   public Habit() {}
 
@@ -47,9 +54,15 @@ public class Habit {
   }
 
   @Exclude
-  public CollectionReference getHabitCollection() {
+  public static CollectionReference getHabitCollection() {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     return db.collection(HABIT_COLLECTION);
+  }
+
+  @Exclude
+  public static Query getHabitQuery() {
+    return getHabitCollection()
+        .orderBy(FIELD_HABIT_NAME, Query.Direction.ASCENDING);
   }
 
   public void saveHabitToFirestore(@Nullable final Runnable onSuccessRunnable) {

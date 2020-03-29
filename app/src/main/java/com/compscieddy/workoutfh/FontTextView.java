@@ -24,14 +24,19 @@ public class FontTextView extends EmojiTextView {
   }
 
   private void init(Context context, AttributeSet attrs) {
-    initDefaults();
-
     if (isInEditMode()) return;
 
     if (attrs != null) {
       TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FontTextView);
+
       int typefaceId = ta.getInt(R.styleable.FontTextView_fontface, AVENIR_NEXT_REGULAR);
       setTypeface(FontCache.get(context, typefaceId));
+
+      if (getLetterSpacing() == 0) {
+        // Assume then that no letter spacing was set, safe to do our own setting.
+        initDefaults();
+      }
+
       ta.recycle();
     }
   }
