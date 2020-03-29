@@ -24,6 +24,8 @@ public class FontTextView extends EmojiTextView {
   }
 
   private void init(Context context, AttributeSet attrs) {
+    initDefaults();
+
     if (isInEditMode()) return;
 
     if (attrs != null) {
@@ -32,6 +34,10 @@ public class FontTextView extends EmojiTextView {
       setTypeface(FontCache.get(context, typefaceId));
       ta.recycle();
     }
+  }
+
+  private void initDefaults() {
+    setLetterSpacing(-0.05f);
   }
 
 }

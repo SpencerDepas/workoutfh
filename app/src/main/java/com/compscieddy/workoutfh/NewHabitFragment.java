@@ -1,17 +1,21 @@
 package com.compscieddy.workoutfh;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.BounceInterpolator;
 import android.widget.EditText;
 
+import com.compscieddy.eddie_utils.etil.Etil;
 import com.compscieddy.workoutfh.model.Habit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class NewHabitFragment extends DialogFragment {
 
@@ -19,6 +23,8 @@ public class NewHabitFragment extends DialogFragment {
   private View mRootView;
   private View mSubmitButton;
   private EditText mHabitNameEditText;
+  private View mBlackBackground;
+  private View mMainDialogContainer;
 
   public static NewHabitFragment newInstance() {
     return new NewHabitFragment();
@@ -60,6 +66,8 @@ public class NewHabitFragment extends DialogFragment {
   private void initViews() {
     mSubmitButton = mRootView.findViewById(R.id.new_habit_submit_button);
     mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
+    mBlackBackground = mRootView.findViewById(R.id.black_background);
+    mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
   }
 
   private void attachListeners() {
@@ -67,12 +75,50 @@ public class NewHabitFragment extends DialogFragment {
       @Override
       public void onClick(View v) {
         String habitName = mHabitNameEditText.getText().toString();
+
+        if (TextUtils.isEmpty(habitName)) {
+          mHabitNameEditText.animate()
+              .setDuration(300)
+              .scaleX(1.2f)
+              .scaleY(1.2f)
+              .setInterpolator(new BounceInterpolator())
+              .withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                  mHabitNameEditText.animate()
+                      .setDuration(300)
+                      .scaleX(1.0f)
+                      .scaleY(1.0f)
+                      .setInterpolator(new BounceInterpolator());
+                }
+              });
+          return;
+        }
+
         Habit.createNewHabitOnFirestore(habitName);
+        dismissWithAnimation();
       }
     });
   }
 
   private void detachListeners() {
+    mSubmitButton.setOnClickListener(null);
+  }
 
+  private void dismissWithAnimation() {
+    mBlackBackground.animate()
+        .alpha(0)
+        .setDuration(800)
+        .withEndAction(new Runnable() {
+          @Override
+          public void run() {
+            NewHabitFragment.this.dismiss();
+          }
+        });
+    mMainDialogContainer.animate()
+        .alpha(0)
+        .setDuration(500)
+        .setInterpolator(new FastOutSlowInInterpolator())
+        .translationY(Etil.dpToPx(-200));
   }
 }

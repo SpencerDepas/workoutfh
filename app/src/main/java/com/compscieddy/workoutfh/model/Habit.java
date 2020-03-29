@@ -6,7 +6,9 @@ import com.compscieddy.workoutfh.Crashes;
 import com.compscieddy.workoutfh.util.FirestoreUtil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -21,11 +23,13 @@ public class Habit {
   private String mEmojiCode;
   private long mCreatedAtMillis;
   private String mId;
+  private String mUserEmail;
 
   public Habit() {}
 
-  public Habit(String habitName, @Nullable String emojiCode) {
+  public Habit(String userEmail, String habitName, @Nullable String emojiCode) {
     mId = FirestoreUtil.generateId(getHabitCollection());
+    mUserEmail = userEmail;
     mHabitName = habitName;
 
     if (TextUtils.isEmpty(emojiCode)) {
@@ -37,10 +41,12 @@ public class Habit {
   }
 
   public static void createNewHabitOnFirestore(String habitName) {
-    Habit newHabit = new Habit(habitName, "");
+    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    Habit newHabit = new Habit(userEmail, habitName, "");
     newHabit.saveHabitToFirestore(null);
   }
 
+  @Exclude
   public CollectionReference getHabitCollection() {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     return db.collection(HABIT_COLLECTION);
@@ -72,6 +78,14 @@ public class Habit {
 
   public void setId(String id) {
     mId = id;
+  }
+
+  public String getUserEmail() {
+    return mUserEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    mUserEmail = userEmail;
   }
 
   public String getHabitName() {

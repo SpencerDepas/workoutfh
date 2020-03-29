@@ -44,6 +44,7 @@
     <style name="FloatingFullscreenDialogTheme">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="DialogTitleText">

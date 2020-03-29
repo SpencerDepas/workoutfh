@@ -52,6 +52,7 @@ public class SettingsGodFragment extends Fragment {
       @Override
       public void onClick(View view) {
         FirebaseAuth.getInstance().signOut();
+
         ActivityHelper.launchActivityAndFinish(getActivity(), AuthenticationActivity.class);
       }
     });

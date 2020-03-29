@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -38,6 +39,7 @@ public class User {
     mPhotoUrl = photoUrl;
   }
 
+  @Exclude
   public CollectionReference getUserCollection() {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     return db.collection(USER_COLLECTION);

@@ -63,12 +63,14 @@ public class AuthenticationActivity extends AppCompatActivity {
   @Override
   protected void onStart() {
     super.onStart();
+    mGoogleClient.connect();
     mAuth.addAuthStateListener(mAuthStateListener);
   }
 
   @Override
   protected void onStop() {
     super.onStop();
+    mGoogleClient.disconnect();
     if (mAuthStateListener != null) {
       mAuth.removeAuthStateListener(mAuthStateListener);
     }
@@ -209,8 +211,6 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     saveUserToFirestoreThenForwardToMainActivity();
     saveFirstTimeLoginMillis();
-
-    ActivityHelper.launchActivityAndFinish(AuthenticationActivity.this, MainActivity.class);
   }
 
   private void saveUserToFirestoreThenForwardToMainActivity() {
