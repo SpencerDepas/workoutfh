@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.compscieddy.workoutfh.R;
-import com.compscieddy.workoutfh.RecordFragment;
+import com.compscieddy.workoutfh.RecordHabitFragment;
 import com.compscieddy.workoutfh.model.Habit;
 
 import androidx.annotation.NonNull;
@@ -21,6 +21,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   @BindView(R.id.habit_record_button) FrameLayout mHabitRecordButton;
 
   private FragmentManager mChildFragmentManager;
+  private Habit mHabit;
 
   public HabitViewHolder(FragmentManager childFragmentManager, @NonNull View itemView) {
     super(itemView);
@@ -30,16 +31,23 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   }
 
   void setHabitModel(Habit habit) {
-    mHabitName.setText(habit.getHabitName());
+    mHabit = habit;
+    initHabit();
   }
 
   private void init() {
     mHabitRecordButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        RecordFragment.newInstance().show(mChildFragmentManager, RecordFragment.TAG);
+        RecordHabitFragment recordHabitFragment = RecordHabitFragment.newInstance();
+        recordHabitFragment.setHabit(mHabit);
+        recordHabitFragment.show(mChildFragmentManager, RecordHabitFragment.TAG);
       }
     });
+  }
+
+  private void initHabit() {
+    mHabitName.setText(mHabit.getHabitName());
   }
 
 }

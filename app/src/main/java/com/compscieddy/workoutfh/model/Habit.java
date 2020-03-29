@@ -34,9 +34,9 @@ public class Habit {
 
   public Habit() {}
 
-  public Habit(String userEmail, String habitName, @Nullable String emojiCode) {
+  public Habit(String habitName, @Nullable String emojiCode) {
     mId = FirestoreUtil.generateId(getHabitCollection());
-    mUserEmail = userEmail;
+    mUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     mHabitName = habitName;
 
     if (TextUtils.isEmpty(emojiCode)) {
@@ -48,8 +48,7 @@ public class Habit {
   }
 
   public static void createNewHabitOnFirestore(String habitName) {
-    String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-    Habit newHabit = new Habit(userEmail, habitName, "");
+    Habit newHabit = new Habit(habitName, "");
     newHabit.saveHabitToFirestore(null);
   }
 
@@ -65,7 +64,7 @@ public class Habit {
         .orderBy(FIELD_HABIT_NAME, Query.Direction.ASCENDING);
   }
 
-  public void saveHabitToFirestore(@Nullable final Runnable onSuccessRunnable) {
+  private void saveHabitToFirestore(@Nullable final Runnable onSuccessRunnable) {
     getHabitCollection().document(getId()).set(Habit.this, SetOptions.merge())
         .addOnSuccessListener(new OnSuccessListener<Void>() {
           @Override

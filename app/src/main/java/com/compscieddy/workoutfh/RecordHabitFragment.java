@@ -8,27 +8,40 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.compscieddy.workoutfh.model.Habit;
+import com.compscieddy.workoutfh.model.HabitRecord;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class RecordFragment extends FloatingBaseFragment {
+public class RecordHabitFragment extends FloatingBaseFragment {
 
-  public static final String TAG = RecordFragment.class.getSimpleName();
+  public static final String TAG = RecordHabitFragment.class.getSimpleName();
 
   private View mRootView;
   private EditText mHabitCountEditText;
+  private View mHabitRecordButton;
 
-  public static RecordFragment newInstance() {
-    return new RecordFragment();
+  private Habit mHabit;
+
+  public static RecordHabitFragment newInstance() {
+    return new RecordHabitFragment();
   }
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    mRootView = inflater.inflate(R.layout.fragment_record, container, false);
+    mRootView = inflater.inflate(R.layout.fragment_record_habit, container, false);
     initViews();
     init();
     return mRootView;
+  }
+
+  /**
+   * Habit needs to be passed in.
+   */
+  public void setHabit(Habit habit) {
+    mHabit = habit;
   }
 
   @Override
@@ -55,6 +68,7 @@ public class RecordFragment extends FloatingBaseFragment {
 
   private void initViews() {
     mHabitCountEditText = mRootView.findViewById(R.id.habit_count_edit_text);
+    mHabitRecordButton = mRootView.findViewById(R.id.save_habit_record_button);
   }
 
   private void init() {
@@ -69,10 +83,16 @@ public class RecordFragment extends FloatingBaseFragment {
   }
 
   private void attachListeners() {
-
+    mHabitRecordButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        HabitRecord.createNewHabitRecordOnFirestore(mHabit, Integer.valueOf(mHabitCountEditText.getText().toString()));
+        dismissWithAnimation();
+      }
+    });
   }
 
   private void detachListeners() {
-
+    mHabitRecordButton.setOnClickListener(null);
   }
 }
