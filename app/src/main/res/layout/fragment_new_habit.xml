@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_t10"
+    >
+
+    <!-- Horizontal Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        >
+        <Space style="@style/SpaceWidthWeight1"/>
+        <LinearLayout
+            android:id="@+id/main_dialog_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:orientation="vertical"
+            style="@style/StandardDialogContainer"
+            >
+            <com.compscieddy.workoutfh.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="New Workout"
+                android:textSize="22sp"
+                android:letterSpacing="-0.05"
+                app:fontface="avenir_next_bold"
+                />
+            <Space style="@style/SpaceHeight10dp"/>
+            <com.compscieddy.workoutfh.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="Name"
+                android:textColor="@color/standard_faded_text_color"
+                style="@style/DialogTitleText"
+                />
+            <com.compscieddy.workoutfh.FontEditText
+                android:id="@+id/new_habit_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pushups, Pullups, ..."
+                app:fontface="avenir_next_medium"
+                style="@style/StandardEditText"
+                />
+            <Space style="@style/SpaceHeight10dp"/>
+            <com.compscieddy.workoutfh.FontTextView
+                android:id="@+id/new_habit_submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/medium_green_light_button_background"
+                android:text="Create"
+                android:textColor="@color/white"
+                style="@style/MediumButton"
+                />
+        </LinearLayout><!-- @main_container -->
+        <Space style="@style/SpaceWidthWeight1"/>
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -36,6 +36,11 @@ public class Habit {
     mCreatedAtMillis = System.currentTimeMillis();
   }
 
+  public static void createNewHabitOnFirestore(String habitName) {
+    Habit newHabit = new Habit(habitName, "");
+    newHabit.saveHabitToFirestore(null);
+  }
+
   public CollectionReference getHabitCollection() {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     return db.collection(HABIT_COLLECTION);
@@ -46,7 +51,9 @@ public class Habit {
         .addOnSuccessListener(new OnSuccessListener<Void>() {
           @Override
           public void onSuccess(Void aVoid) {
-            onSuccessRunnable.run();
+            if (onSuccessRunnable != null) {
+              onSuccessRunnable.run();
+            }
           }
         })
         .addOnFailureListener(new OnFailureListener() {
