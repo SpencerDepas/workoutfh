@@ -24,12 +24,14 @@ public class Habit {
   public static final String FIELD_USER_EMAIL = "userEmail";
   public static final String FIELD_HABIT_NAME = "habitName";
   public static final String FIELD_EMOJI_CODE = "emojiCode";
+  public static final String FIELD_TOTAL_HABIT_COUNT = "totalHabitCount";
   public static final String FIELD_CREATED_AT_MILLIS = "createdAtMillis";
 
   private String mId;
   private String mUserEmail;
   private String mHabitName;
   private String mEmojiCode;
+  private int mTotalHabitCount;
   private long mCreatedAtMillis;
 
   public Habit() {}
@@ -82,6 +84,10 @@ public class Habit {
         });
   }
 
+  public void updateTotalHabitCount(HabitRecord habitRecord) {
+    setTotalHabitCount(getTotalHabitCount() + habitRecord.getHabitCount());
+  }
+
   /** Getters and Setters */
 
   public String getId() {
@@ -114,6 +120,14 @@ public class Habit {
 
   public void setEmojiCode(String emojiCode) {
     mEmojiCode = emojiCode;
+  }
+
+  public int getTotalHabitCount() {
+    return mTotalHabitCount;
+  }
+
+  public void setTotalHabitCount(int totalHabitCount) {
+    mTotalHabitCount = totalHabitCount;
   }
 
   public long getCreatedAtMillis() {

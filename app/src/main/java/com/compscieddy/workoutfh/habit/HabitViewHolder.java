@@ -48,6 +48,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
 
   private void initHabit() {
     mHabitName.setText(mHabit.getHabitName());
+    mHabitCount.setText(String.valueOf(mHabit.getTotalHabitCount()));
   }
 
 }
