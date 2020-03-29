@@ -9,20 +9,25 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 public class HabitRecyclerAdapter extends FirestoreRecyclerAdapter<Habit, HabitViewHolder> {
 
-  public HabitRecyclerAdapter() {
+  private FragmentManager mChildFragmentManager;
+
+  public HabitRecyclerAdapter(FragmentManager childFragmentManager) {
     super(
         new FirestoreRecyclerOptions.Builder<Habit>()
             .setQuery(Habit.getHabitQuery(), Habit.class)
             .build());
+    mChildFragmentManager = childFragmentManager;
   }
 
   @NonNull
   @Override
   public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new HabitViewHolder(
+        mChildFragmentManager,
         LayoutInflater.from(parent.getContext()).inflate(R.layout.item_habit, null, false));
   }
 

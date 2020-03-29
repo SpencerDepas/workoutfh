@@ -52,9 +52,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="StandardDialogContainer">
-        <item name="android:background">@drawable/white_rounded_background</item>
+    <style name="StandardDialogContainer_useWithCarbonView">
+        <item name="android:background">@color/white</item>
         <item name="android:padding">@dimen/spacing_medium</item>
+        <item name="android:translationY">-30dp</item>
+        <item name="carbon_cornerRadius">@dimen/spacing_small</item>
     </style>
 
     <style name="StandardEditText">

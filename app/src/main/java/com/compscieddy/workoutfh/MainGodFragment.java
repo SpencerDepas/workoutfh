@@ -56,7 +56,7 @@ public class MainGodFragment extends Fragment {
   }
 
   private void initRecyclerView() {
-    mHabitRecyclerAdapter = new HabitRecyclerAdapter();
+    mHabitRecyclerAdapter = new HabitRecyclerAdapter(getChildFragmentManager());
 
     mHabitRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
     mHabitRecyclerView.setAdapter(mHabitRecyclerAdapter);

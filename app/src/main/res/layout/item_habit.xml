@@ -24,16 +24,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_small"
+            android:paddingLeft="@dimen/spacing_small"
+            android:paddingRight="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_small"
             >
             <com.compscieddy.workoutfh.FontTextView
                 android:id="@+id/habit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
-                android:letterSpacing="+0.01"
-                app:fontface="avenir_next_demibold"
+                android:letterSpacing="-0.01"
+                app:fontface="avenir_next_bold"
                 />
             <com.compscieddy.workoutfh.FontTextView
                 android:id="@+id/habit_count"
@@ -56,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:translationY="-1dp"
-                android:paddingTop="@dimen/spacing_small"
-                android:paddingBottom="@dimen/spacing_small"
+                android:paddingTop="@dimen/spacing_xsmall"
+                android:paddingBottom="@dimen/spacing_xsmall"
                 android:paddingLeft="@dimen/spacing_xsmall"
                 android:paddingRight="@dimen/spacing_xsmall"
                 android:text="record"

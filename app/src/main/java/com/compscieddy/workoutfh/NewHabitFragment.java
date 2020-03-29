@@ -5,19 +5,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.BounceInterpolator;
 import android.widget.EditText;
 
-import com.compscieddy.eddie_utils.etil.Etil;
 import com.compscieddy.workoutfh.model.Habit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-public class NewHabitFragment extends DialogFragment {
+public class NewHabitFragment extends FloatingBaseFragment {
 
   public static final String TAG = NewHabitFragment.class.getSimpleName();
   private View mRootView;
@@ -30,26 +26,23 @@ public class NewHabitFragment extends DialogFragment {
     return new NewHabitFragment();
   }
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setStyle(DialogFragment.STYLE_NORMAL, R.style.FloatingFullscreenDialogTheme);
-  }
-
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     mRootView = inflater.inflate(R.layout.fragment_new_habit, container, false);
     /** ButterKnife does not appear to work, debugging was proving to be a waste of time. */
     initViews();
-    runEnteringAnimation();
     return mRootView;
   }
 
   @Override
-  public void onStart() {
-    super.onStart();
-    getDialog().getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+  View getBlackBackground() {
+    return mBlackBackground;
+  }
+
+  @Override
+  View getMainDialogContainer() {
+    return mMainDialogContainer;
   }
 
   @Override
@@ -69,16 +62,6 @@ public class NewHabitFragment extends DialogFragment {
     mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
     mBlackBackground = mRootView.findViewById(R.id.black_background);
     mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
-  }
-
-  private void runEnteringAnimation() {
-    mBlackBackground.animate()
-        .alpha(1)
-        .setDuration(300);
-    mMainDialogContainer.animate()
-        .alpha(1)
-        .translationY(0)
-        .setDuration(200);
   }
 
   private void attachListeners() {
@@ -110,33 +93,10 @@ public class NewHabitFragment extends DialogFragment {
         dismissWithAnimation();
       }
     });
-    mBlackBackground.setOnClickListener(new View.OnClickListener() {
-        @Override
-      public void onClick(View v) {
-        dismissWithAnimation();
-      }
-    });
   }
 
   private void detachListeners() {
     mSubmitButton.setOnClickListener(null);
     mBlackBackground.setOnClickListener(null);
-  }
-
-  private void dismissWithAnimation() {
-    mBlackBackground.animate()
-        .alpha(0)
-        .setDuration(800)
-        .withEndAction(new Runnable() {
-          @Override
-          public void run() {
-            NewHabitFragment.this.dismiss();
-          }
-        });
-    mMainDialogContainer.animate()
-        .alpha(0)
-        .setDuration(700)
-        .setInterpolator(new FastOutSlowInInterpolator())
-        .translationY(Etil.dpToPx(-40));
   }
 }

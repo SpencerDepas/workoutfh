@@ -9,6 +9,8 @@
     <color name="standard_pressed_tap_area_background">@color/whitetoblack_20</color>
     <color name="standard_faded_text_color">@color/black_t40</color>
 
+    <color name="dialog_black_background">@color/black_t40</color>
+
     <!-- Muted Colors -->
     <color name="muted_red">#D29A9A</color>
     <color name="muted_orange">#D2B29A</color>
