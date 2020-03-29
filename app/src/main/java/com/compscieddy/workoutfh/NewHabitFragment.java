@@ -42,6 +42,7 @@ public class NewHabitFragment extends DialogFragment {
     mRootView = inflater.inflate(R.layout.fragment_new_habit, container, false);
     /** ButterKnife does not appear to work, debugging was proving to be a waste of time. */
     initViews();
+    runEnteringAnimation();
     return mRootView;
   }
 
@@ -68,6 +69,16 @@ public class NewHabitFragment extends DialogFragment {
     mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
     mBlackBackground = mRootView.findViewById(R.id.black_background);
     mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
+  }
+
+  private void runEnteringAnimation() {
+    mBlackBackground.animate()
+        .alpha(1)
+        .setDuration(300);
+    mMainDialogContainer.animate()
+        .alpha(1)
+        .translationY(0)
+        .setDuration(200);
   }
 
   private void attachListeners() {
@@ -124,8 +135,8 @@ public class NewHabitFragment extends DialogFragment {
         });
     mMainDialogContainer.animate()
         .alpha(0)
-        .setDuration(500)
+        .setDuration(700)
         .setInterpolator(new FastOutSlowInInterpolator())
-        .translationY(Etil.dpToPx(-200));
+        .translationY(Etil.dpToPx(-40));
   }
 }

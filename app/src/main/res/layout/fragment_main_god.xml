@@ -33,6 +33,8 @@
         </FrameLayout>
     </LinearLayout>
 
+    <Space style="@style/SpaceHeight10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/habit_recycler_view"
         android:layout_width="match_parent"

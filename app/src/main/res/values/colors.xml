@@ -7,7 +7,7 @@
     <!-- Standard Colors -->
     <color name="standard_idle_tap_area_background">@color/whitetoblack_10</color>
     <color name="standard_pressed_tap_area_background">@color/whitetoblack_20</color>
-    <color name="standard_faded_text_color">@color/black_t50</color>
+    <color name="standard_faded_text_color">@color/black_t40</color>
 
     <!-- Muted Colors -->
     <color name="muted_red">#D29A9A</color>
