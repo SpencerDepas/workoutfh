@@ -14,6 +14,11 @@
         <item name="customColor">@color/white</item>
     </style>
 
+    <style name="SpaceWidth10dp">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <style name="SpaceWidth20dp">
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">match_parent</item>
