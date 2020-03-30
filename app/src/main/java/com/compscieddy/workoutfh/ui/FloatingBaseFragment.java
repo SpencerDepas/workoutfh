@@ -1,9 +1,12 @@
 package com.compscieddy.workoutfh.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import com.compscieddy.eddie_utils.etil.Etil;
+import com.compscieddy.eddie_utils.etil.KeyboardEtil;
 import com.compscieddy.workoutfh.R;
 
 import androidx.annotation.Nullable;
@@ -40,9 +43,14 @@ public abstract class FloatingBaseFragment extends DialogFragment {
     detachListeners();
   }
 
+  /** Used for enter and exit animation of black background and dialog container. */
   public abstract View getBlackBackground();
 
+  /** Used for enter and exit animation of black background and dialog container. */
   public abstract View getMainDialogContainer();
+
+  /** Used for showing/hiding keyboard. */
+  public abstract View getKeyboardFocusView();
 
   private void attachListeners() {
     getBlackBackground().setOnClickListener(new View.OnClickListener() {
@@ -58,9 +66,16 @@ public abstract class FloatingBaseFragment extends DialogFragment {
   }
 
   protected void dismissWithAnimation() {
+    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        KeyboardEtil.hideKeyboard(getKeyboardFocusView());
+      }
+    }, 350);
+
     getBlackBackground().animate()
         .alpha(0)
-        .setDuration(800)
+        .setDuration(700)
         .withEndAction(new Runnable() {
           @Override
           public void run() {
@@ -69,9 +84,9 @@ public abstract class FloatingBaseFragment extends DialogFragment {
         });
     getMainDialogContainer().animate()
         .alpha(0)
-        .setDuration(700)
+        .setDuration(600)
         .setInterpolator(new FastOutSlowInInterpolator())
-        .translationY(Etil.dpToPx(-40));
+        .translationY(Etil.dpToPx(-30));
   }
 
   private void runEnteringAnimation() {
@@ -80,10 +95,10 @@ public abstract class FloatingBaseFragment extends DialogFragment {
 
     getBlackBackground().animate()
         .alpha(1)
-        .setDuration(300);
+        .setDuration(500);
     getMainDialogContainer().animate()
         .alpha(1)
         .translationY(0)
-        .setDuration(200);
+        .setDuration(400);
   }
 }

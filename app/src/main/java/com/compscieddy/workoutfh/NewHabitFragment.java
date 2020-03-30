@@ -47,6 +47,11 @@ public class NewHabitFragment extends FloatingBaseFragment {
   }
 
   @Override
+  public View getKeyboardFocusView() {
+    return mHabitNameEditText;
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
     attachListeners();

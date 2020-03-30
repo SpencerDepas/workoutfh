@@ -68,6 +68,11 @@ public class RecordHabitFragment extends FloatingBaseFragment {
     return mRootView.findViewById(R.id.main_dialog_container);
   }
 
+  @Override
+  public View getKeyboardFocusView() {
+    return mHabitCountEditText;
+  }
+
   private void initViews() {
     mHabitCountEditText = mRootView.findViewById(R.id.habit_count_edit_text);
     mHabitRecordButton = mRootView.findViewById(R.id.save_habit_record_button);
