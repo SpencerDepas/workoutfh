@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Pushups, Pullups, ..."
-                android:textColorHint="@color/whitetoblack_30"
+                android:textColorHint="@color/wtb_30"
                 app:fontface="avenir_next_medium"
                 android:inputType="textCapWords"
                 style="@style/StandardEditText"

@@ -16,18 +16,18 @@
         <item name="fgPrimaryT80">@color/white_t80</item>
         <item name="fgPrimaryT90">@color/white_t90</item>
 
-        <item name="fgPrimary05">@color/whitetoblack_95</item>
-        <item name="fgPrimary10">@color/whitetoblack_90</item>
-        <item name="fgPrimary15">@color/whitetoblack_85</item>
-        <item name="fgPrimary20">@color/whitetoblack_80</item>
-        <item name="fgPrimary30">@color/whitetoblack_70</item>
-        <item name="fgPrimary40">@color/whitetoblack_60</item>
-        <item name="fgPrimary50">@color/whitetoblack_50</item>
-        <item name="fgPrimary60">@color/whitetoblack_40</item>
-        <item name="fgPrimary70">@color/whitetoblack_30</item>
-        <item name="fgPrimary80">@color/whitetoblack_20</item>
-        <item name="fgPrimary90">@color/whitetoblack_10</item>
-        <item name="fgPrimary95">@color/whitetoblack_05</item>
+        <item name="fgPrimary05">@color/wtb_95</item>
+        <item name="fgPrimary10">@color/wtb_90</item>
+        <item name="fgPrimary15">@color/wtb_85</item>
+        <item name="fgPrimary20">@color/wtb_80</item>
+        <item name="fgPrimary30">@color/wtb_70</item>
+        <item name="fgPrimary40">@color/wtb_60</item>
+        <item name="fgPrimary50">@color/wtb_50</item>
+        <item name="fgPrimary60">@color/wtb_40</item>
+        <item name="fgPrimary70">@color/wtb_30</item>
+        <item name="fgPrimary80">@color/wtb_20</item>
+        <item name="fgPrimary90">@color/wtb_10</item>
+        <item name="fgPrimary95">@color/wtb_05</item>
 
         <item name="bgPrimaryT05">@color/black_t05</item>
         <item name="bgPrimaryT10">@color/black_t10</item>
@@ -41,17 +41,17 @@
         <item name="bgPrimaryT80">@color/black_t80</item>
         <item name="bgPrimaryT90">@color/black_t90</item>
 
-        <item name="bgPrimary05">@color/whitetoblack_05</item>
-        <item name="bgPrimary10">@color/whitetoblack_10</item>
-        <item name="bgPrimary15">@color/whitetoblack_15</item>
-        <item name="bgPrimary20">@color/whitetoblack_20</item>
-        <item name="bgPrimary30">@color/whitetoblack_30</item>
-        <item name="bgPrimary40">@color/whitetoblack_40</item>
-        <item name="bgPrimary50">@color/whitetoblack_50</item>
-        <item name="bgPrimary60">@color/whitetoblack_60</item>
-        <item name="bgPrimary70">@color/whitetoblack_70</item>
-        <item name="bgPrimary80">@color/whitetoblack_80</item>
-        <item name="bgPrimary90">@color/whitetoblack_90</item>
-        <item name="bgPrimary95">@color/whitetoblack_95</item>
+        <item name="bgPrimary05">@color/wtb_05</item>
+        <item name="bgPrimary10">@color/wtb_10</item>
+        <item name="bgPrimary15">@color/wtb_15</item>
+        <item name="bgPrimary20">@color/wtb_20</item>
+        <item name="bgPrimary30">@color/wtb_30</item>
+        <item name="bgPrimary40">@color/wtb_40</item>
+        <item name="bgPrimary50">@color/wtb_50</item>
+        <item name="bgPrimary60">@color/wtb_60</item>
+        <item name="bgPrimary70">@color/wtb_70</item>
+        <item name="bgPrimary80">@color/wtb_80</item>
+        <item name="bgPrimary90">@color/wtb_90</item>
+        <item name="bgPrimary95">@color/wtb_95</item>
     </style>
 </resources>

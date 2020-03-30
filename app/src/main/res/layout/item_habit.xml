@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="3dp"
+    android:padding="6dp"
     android:clipChildren="false"
     android:clipToPadding="false"
     >
@@ -17,8 +17,8 @@
         android:background="@color/white"
         android:padding="@dimen/spacing_xsmall"
         app:carbon_cornerRadius="@dimen/medium_button_corner_radius"
-        app:carbon_elevation="5dp"
-        app:carbon_elevationShadowColor="@color/black_t25"
+        app:carbon_elevation="6dp"
+        app:carbon_elevationShadowColor="@color/black_t55"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,10 +32,10 @@
                 android:id="@+id/habit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 android:letterSpacing="-0.05"
-                app:fontface="avenir_next_bold"
+                app:fontface="avenir_next_demibold"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,16 +71,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="-2dp"
+                android:layout_marginBottom="-2dp"
                 android:translationY="-1dp"
-                android:paddingTop="@dimen/spacing_xsmall"
-                android:paddingBottom="@dimen/spacing_xsmall"
-                android:paddingLeft="@dimen/spacing_xsmall"
-                android:paddingRight="@dimen/spacing_xsmall"
-                android:text="log"
-                android:textSize="13sp"
+                android:text="+"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:letterSpacing="-0.01"
-                app:fontface="avenir_next_demibold"
+                app:fontface="avenir_next_medium"
                 />
         </carbon.widget.FrameLayout>
     </carbon.widget.LinearLayout>
