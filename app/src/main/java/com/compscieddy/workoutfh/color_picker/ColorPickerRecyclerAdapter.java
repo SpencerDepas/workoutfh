@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.compscieddy.workoutfh.R;
@@ -13,8 +12,11 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
 
     private int[] mColors;
 
-    public ColorPickerRecyclerAdapter( int[] colors) {
+    private ColorPickerCallBack mCallback;
+
+    public ColorPickerRecyclerAdapter(int[] colors, ColorPickerCallBack callback) {
         mColors = colors;
+        mCallback = callback;
     }
 
     @NonNull
@@ -27,11 +29,18 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
     @Override
     public void onBindViewHolder(@NonNull ColorPickerViewHolder holder, int position) {
         holder.setColor(mColors[position]);
+        holder.mClickableColorItem.setOnClickListener(v -> {
+            mCallback.onColorSelected(mColors[position]);
+        });
     }
 
     @Override
     public int getItemCount() {
         return mColors.length;
+    }
+
+    public interface ColorPickerCallBack {
+        void onColorSelected(int color);
     }
 
 }

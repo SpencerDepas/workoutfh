@@ -12,13 +12,13 @@
         android:focusable="false"
         android:focusableInTouchMode="false">
 
-        <RelativeLayout
+        <Button
             android:layout_width="@dimen/circle_height"
+            android:id="@+id/clickable_color_item"
             android:layout_height="@dimen/circle_height"
             android:background="@drawable/color_item_selection_border"
             android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusable="true" />
 
     </RelativeLayout>
 
