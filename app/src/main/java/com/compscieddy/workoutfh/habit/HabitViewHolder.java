@@ -69,7 +69,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void initHabitRecordRecyclerView() {
-    FirestoreRecyclerAdapter habitRecordRecyclerAdapter = new HabitRecordRecyclerAdapter(mChildFragmentManager, mHabit.getId());
+    FirestoreRecyclerAdapter habitRecordRecyclerAdapter = new HabitRecordRecyclerAdapter(mChildFragmentManager, mHabit.getId(),mHabit.getHabitColor() );
     habitRecordRecyclerAdapter.startListening();
     mFirestoreRecyclerAdapterListenerHelper.addFirestoreRecyclerAdapterForListeningCallbacks(habitRecordRecyclerAdapter);
     mHabitRecordRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));

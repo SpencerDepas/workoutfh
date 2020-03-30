@@ -15,12 +15,15 @@ public class HabitRecordRecyclerAdapter extends FirestoreRecyclerAdapter<HabitRe
 
   private FragmentManager mChildFragmentManager;
 
-  public HabitRecordRecyclerAdapter(FragmentManager childFragmentManager, String habitId) {
+  private int mHabitColorId;
+
+  public HabitRecordRecyclerAdapter(FragmentManager childFragmentManager, String habitId, int habitColorId) {
     super(
         new FirestoreRecyclerOptions.Builder<HabitRecord>()
             .setQuery(HabitRecord.getHabitRecordQuery(habitId), HabitRecord.class)
             .build());
     mChildFragmentManager = childFragmentManager;
+    mHabitColorId = habitColorId;
   }
 
   @NonNull
@@ -33,6 +36,6 @@ public class HabitRecordRecyclerAdapter extends FirestoreRecyclerAdapter<HabitRe
 
   @Override
   protected void onBindViewHolder(@NonNull HabitRecordViewHolder holder, int position, @NonNull HabitRecord model) {
-    holder.setHabitRecordModel(model);
+    holder.setModel(model, mHabitColorId);
   }
 }

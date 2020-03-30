@@ -19,6 +19,7 @@ public class HabitRecordViewHolder extends RecyclerView.ViewHolder {
 
   private FragmentManager mChildFragmentManager;
   private HabitRecord mHabitRecord;
+  private int mHabitColorId;
 
   public HabitRecordViewHolder(FragmentManager childFragmentManager, @NonNull View itemView) {
     super(itemView);
@@ -27,8 +28,9 @@ public class HabitRecordViewHolder extends RecyclerView.ViewHolder {
     init();
   }
 
-  void setHabitRecordModel(HabitRecord habitRecord) {
+  void setModel(HabitRecord habitRecord, int colorId) {
     mHabitRecord = habitRecord;
+    mHabitColorId = colorId;
     initHabitRecord();
   }
 
@@ -38,5 +40,6 @@ public class HabitRecordViewHolder extends RecyclerView.ViewHolder {
 
   private void initHabitRecord() {
     mHabitRecordCount.setText("+" + StringUtil.getCountString(mHabitRecord.getHabitCount()));
+    mHabitRecordCount.setTextColor(0xff000000 + mHabitColorId);
   }
 }
