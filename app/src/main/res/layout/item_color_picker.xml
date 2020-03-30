@@ -6,7 +6,20 @@
 
     <RelativeLayout
         android:id="@+id/color_item"
-        android:layout_width="@dimen/circle_height"
-        android:layout_height="@dimen/circle_height" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/muted_red"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <RelativeLayout
+            android:layout_width="@dimen/circle_height"
+            android:layout_height="@dimen/circle_height"
+            android:background="@drawable/color_item_selection_border"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+    </RelativeLayout>
 
 </FrameLayout>

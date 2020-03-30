@@ -22,5 +22,6 @@
 
     <!-- Color picker-->
     <dimen name="circle_height">40dp</dimen>
+    <dimen name="circle_select_stroke">4dp</dimen>
 
 </resources>
