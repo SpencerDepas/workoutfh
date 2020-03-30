@@ -2,6 +2,7 @@ package com.compscieddy.workoutfh.model;
 
 import android.text.TextUtils;
 
+import com.compscieddy.workoutfh.util.AuthenticationUtil;
 import com.compscieddy.workoutfh.util.CrashUtil;
 import com.compscieddy.workoutfh.util.FirestoreUtil;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -63,6 +64,7 @@ public class Habit {
   @Exclude
   public static Query getHabitQuery() {
     return getHabitCollection()
+        .whereEqualTo(FIELD_USER_EMAIL, AuthenticationUtil.getUserEmail())
         .orderBy(FIELD_HABIT_NAME, Query.Direction.ASCENDING);
   }
 

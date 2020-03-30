@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.compscieddy.workoutfh.FirestoreRecyclerAdapterListenerHelper;
 import com.compscieddy.workoutfh.NewHabitFragment;
 import com.compscieddy.workoutfh.R;
 import com.compscieddy.workoutfh.habit.HabitRecyclerAdapter;
@@ -22,14 +23,16 @@ public class MainGodFragment extends Fragment {
 
   @BindView(R.id.new_habit_button) View mNewHabitButton;
   @BindView(R.id.habit_recycler_view) RecyclerView mHabitRecyclerView;
+
   private HabitRecyclerAdapter mHabitRecyclerAdapter;
+  private FirestoreRecyclerAdapterListenerHelper mFirestoreRecyclerAdapterListenerHelper;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_main_god, container, false);
     ButterKnife.bind(MainGodFragment.this, rootView);
-    initRecyclerView();
+    initRecyclerViews();
     return rootView;
   }
 
@@ -37,12 +40,16 @@ public class MainGodFragment extends Fragment {
   public void onStart() {
     super.onStart();
     mHabitRecyclerAdapter.startListening();
+
+    /** This is most likely not doing anything because HabitRecordRecyclerAdapters haven't even been created yet. */
+    mFirestoreRecyclerAdapterListenerHelper.startListeningOnAllAdapters();
   }
 
   @Override
   public void onStop() {
     super.onStop();
     mHabitRecyclerAdapter.stopListening();
+    mFirestoreRecyclerAdapterListenerHelper.stopListeningOnAllAdapters();
   }
 
   @Override
@@ -57,9 +64,14 @@ public class MainGodFragment extends Fragment {
     detachListeners();
   }
 
-  private void initRecyclerView() {
-    mHabitRecyclerAdapter = new HabitRecyclerAdapter(getChildFragmentManager());
-
+  /**
+   * Init both RecyclerView for Habit and HabitRecord.
+   *
+   * HabitRecordRecyclerAdapter needs to be setup here so that we can properly call the .startListening() and .stopListening() methods.
+   */
+  private void initRecyclerViews() {
+    mFirestoreRecyclerAdapterListenerHelper = new FirestoreRecyclerAdapterListenerHelper();
+    mHabitRecyclerAdapter = new HabitRecyclerAdapter(getChildFragmentManager(), mFirestoreRecyclerAdapterListenerHelper);
     mHabitRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
     mHabitRecyclerView.setAdapter(mHabitRecyclerAdapter);
   }

@@ -1,14 +1,15 @@
 package com.compscieddy.workoutfh.model;
 
+import com.compscieddy.workoutfh.util.AuthenticationUtil;
 import com.compscieddy.workoutfh.util.CrashUtil;
 import com.compscieddy.workoutfh.util.DateUtil;
 import com.compscieddy.workoutfh.util.FirestoreUtil;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.Transaction;
 
 import java.util.Calendar;
@@ -19,18 +20,26 @@ import androidx.annotation.Nullable;
 public class HabitRecord {
 
   public static final String HABIT_DAY_COLLECTION = "habitDay";
+
+  public static final String FIELD_ID = "id";
+  public static final String FIELD_USER_EMAIL = "userEmail";
+  public static final String FIELD_YEAR_MONTH_DAY = "yearMonthDay";
+  public static final String FIELD_HABIT_ID = "habitId";
+  public static final String FIELD_HABIT_COUNT = "habitCount";
+  public static final String FIELD_CREATED_AT_MILLIS = "createdAtMillis";
+
   private String mId;
+  private String mUserEmail;
   private String mYearMonthDay;
   private String mHabitId;
   private int mHabitCount;
   private long mCreatedAtMillis;
-  private String mUserEmail;
 
   public HabitRecord() {}
 
   public HabitRecord(Calendar calendar, String habitId, int habitCount) {
     mId = FirestoreUtil.generateId(getHabitRecordCollection());
-    mUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    mUserEmail = AuthenticationUtil.getUserEmail();
     mHabitId = habitId;
     mYearMonthDay = DateUtil.getYearMonthDayString(calendar);
     mHabitCount = habitCount;
@@ -78,6 +87,14 @@ public class HabitRecord {
   public static CollectionReference getHabitRecordCollection() {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     return db.collection(HABIT_DAY_COLLECTION);
+  }
+
+  @Exclude
+  public static Query getHabitRecordQuery(String habitId) {
+    return getHabitRecordCollection()
+        .whereEqualTo(FIELD_USER_EMAIL, AuthenticationUtil.getUserEmail())
+        .whereEqualTo(FIELD_HABIT_ID, habitId)
+        .orderBy(FIELD_CREATED_AT_MILLIS, Query.Direction.DESCENDING);
   }
 
   /** Getters and Setters */

@@ -21,7 +21,7 @@
         app:carbon_elevationShadowColor="@color/black_t25"
         >
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="@dimen/spacing_small"
@@ -37,14 +37,27 @@
                 android:letterSpacing="-0.01"
                 app:fontface="avenir_next_bold"
                 />
-            <com.compscieddy.workoutfh.ui.FontTextView
-                android:id="@+id/habit_count"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="--"
-                app:fontface="avenir_next_bold"
-                />
+                android:orientation="horizontal"
+                >
+                <com.compscieddy.workoutfh.ui.FontTextView
+                    android:id="@+id/habit_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="--"
+                    app:fontface="avenir_next_bold"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/habit_record_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="6dp"
+                    />
+            </LinearLayout>
         </LinearLayout>
         <carbon.widget.FrameLayout
             android:id="@+id/habit_record_button"
