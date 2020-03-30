@@ -64,7 +64,7 @@
             android:id="@+id/habit_record_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/small_light_button_background"
+            android:background="@drawable/small_dark_button_background"
             app:carbon_cornerRadius="5dp"
             >
             <com.compscieddy.workoutfh.ui.FontTextView
@@ -76,9 +76,9 @@
                 android:paddingBottom="@dimen/spacing_xsmall"
                 android:paddingLeft="@dimen/spacing_xsmall"
                 android:paddingRight="@dimen/spacing_xsmall"
-                android:text="record"
+                android:text="log"
                 android:textSize="13sp"
-                android:textColorHint="@color/whitetoblack_10"
+                android:textColor="@color/white"
                 android:letterSpacing="-0.01"
                 app:fontface="avenir_next_demibold"
                 />
