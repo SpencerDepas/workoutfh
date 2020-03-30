@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="habit_dialog_colors">
+        <item name="dialog_muted_red" type="color">#D29A9A</item>
+        <item name="dialog_muted_yellow" type="color">#D2C593</item>
+        <item name="dialog_muted_blue" type="color">#A4CBCB</item>
+        <item name="dialog_muted_orange" type="color">#D2B29A</item>
+        <item name="dialog_muted_green_two" type="color">#B7CBA4</item>
+        <item name="dialog_muted_purple" type="color">#B0AEC4</item>
+        <item name="dialog_muted_green_three" type="color">#B2D6C3</item>
+        <item name="dialog_muted_green_pink" type="color">#E1C8D9</item>
+    </array>
+
+</resources>

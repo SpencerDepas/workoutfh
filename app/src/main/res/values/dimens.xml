@@ -18,4 +18,9 @@
     <dimen name="standard_edit_text_padding_vertical">12dp</dimen>
     <dimen name="standard_edit_text_padding_horizontal">14dp</dimen>
 
+
+
+    <!-- Color picker-->
+    <dimen name="circle_height">40dp</dimen>
+
 </resources>

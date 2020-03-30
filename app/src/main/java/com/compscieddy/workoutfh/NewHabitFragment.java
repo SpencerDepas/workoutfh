@@ -8,17 +8,21 @@ import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.widget.EditText;
 
-import com.compscieddy.workoutfh.model.Habit;
-import com.compscieddy.workoutfh.ui.FloatingBaseFragment;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.compscieddy.workoutfh.color_picker.ColorPickerRecyclerAdapter;
+import com.compscieddy.workoutfh.model.Habit;
+import com.compscieddy.workoutfh.ui.FloatingBaseFragment;
 
 public class NewHabitFragment extends FloatingBaseFragment {
 
   public static final String TAG = NewHabitFragment.class.getSimpleName();
   private View mRootView;
   private View mSubmitButton;
+  private RecyclerView mRecyclerView;
   private EditText mHabitNameEditText;
   private View mBlackBackground;
   private View mMainDialogContainer;
@@ -68,6 +72,16 @@ public class NewHabitFragment extends FloatingBaseFragment {
     mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
     mBlackBackground = mRootView.findViewById(R.id.black_background);
     mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
+    mRecyclerView = mRootView.findViewById(R.id.mtrl_colors);
+    initRvAdapter();
+  }
+
+  private void initRvAdapter(){
+
+    LinearLayoutManager horizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+    ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_dialog_colors));
+    mRecyclerView.setAdapter(adapter);
+    mRecyclerView.setLayoutManager(horizontalLayout);
   }
 
   private void attachListeners() {
