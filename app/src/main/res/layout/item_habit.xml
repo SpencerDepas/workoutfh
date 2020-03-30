@@ -64,7 +64,7 @@
             android:id="@+id/habit_record_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/whitetoblack_05"
+            android:background="@drawable/small_light_button_background"
             app:carbon_cornerRadius="5dp"
             >
             <com.compscieddy.workoutfh.ui.FontTextView

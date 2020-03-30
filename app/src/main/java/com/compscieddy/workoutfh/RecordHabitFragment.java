@@ -95,7 +95,7 @@ public class RecordHabitFragment extends FloatingBaseFragment {
       @Override
       public boolean onKey(View view, int i, KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
-            && keyEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER) {
+            && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
           saveHabitRecordAndDismissWithAnimation();
           return true;
         }
@@ -111,5 +111,6 @@ public class RecordHabitFragment extends FloatingBaseFragment {
 
   private void detachListeners() {
     mHabitRecordButton.setOnClickListener(null);
+    mHabitCountEditText.setOnKeyListener(null);
   }
 }
