@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.compscieddy.workoutfh.R;
 import com.compscieddy.workoutfh.model.HabitRecord;
+import com.compscieddy.workoutfh.util.StringUtil;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -36,6 +37,6 @@ public class HabitRecordViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void initHabitRecord() {
-    mHabitRecordCount.setText("+" + String.valueOf(mHabitRecord.getHabitCount()));
+    mHabitRecordCount.setText("+" + StringUtil.getCountString(mHabitRecord.getHabitCount()));
   }
 }

@@ -9,6 +9,7 @@ import com.compscieddy.workoutfh.R;
 import com.compscieddy.workoutfh.RecordHabitFragment;
 import com.compscieddy.workoutfh.habit_record.HabitRecordRecyclerAdapter;
 import com.compscieddy.workoutfh.model.Habit;
+import com.compscieddy.workoutfh.util.StringUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 
 import androidx.annotation.NonNull;
@@ -63,7 +64,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
 
   private void initHabit() {
     mHabitName.setText(mHabit.getHabitName());
-    mHabitCount.setText(String.valueOf(mHabit.getTotalHabitCount()));
+    mHabitCount.setText(StringUtil.getCountString(mHabit.getTotalHabitCount()));
   }
 
   private void initHabitRecordRecyclerView() {
