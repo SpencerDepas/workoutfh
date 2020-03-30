@@ -5,11 +5,11 @@
     >
 
     <item
-        android:drawable="@color/wtb_35"
+        android:drawable="@color/wtb_20"
         android:state_pressed="true"
         />
     <item
-        android:drawable="@color/wtb_20"
+        android:drawable="@color/wtb_15"
         />
 
 </selector>
