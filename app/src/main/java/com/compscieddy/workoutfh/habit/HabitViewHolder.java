@@ -65,6 +65,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   private void initHabit() {
     mHabitName.setText(mHabit.getHabitName());
     mHabitCount.setText(StringUtil.getCountString(mHabit.getTotalHabitCount()));
+    mHabitRecordButton.setBackgroundColor(0xff000000 + mHabit.getHabitColor());
   }
 
   private void initHabitRecordRecyclerView() {
