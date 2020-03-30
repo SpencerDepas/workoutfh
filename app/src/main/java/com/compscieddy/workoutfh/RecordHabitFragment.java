@@ -2,6 +2,7 @@ package com.compscieddy.workoutfh;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,10 +88,25 @@ public class RecordHabitFragment extends FloatingBaseFragment {
     mHabitRecordButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        HabitRecord.createNewHabitRecordOnFirestore(mHabit, Float.valueOf(mHabitCountEditText.getText().toString()));
-        dismissWithAnimation();
+        saveHabitRecordAndDismissWithAnimation();
       }
     });
+    mHabitCountEditText.setOnKeyListener(new View.OnKeyListener() {
+      @Override
+      public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
+            && keyEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER) {
+          saveHabitRecordAndDismissWithAnimation();
+          return true;
+        }
+        return false;
+      }
+    });
+  }
+
+  private void saveHabitRecordAndDismissWithAnimation() {
+    HabitRecord.createNewHabitRecordOnFirestore(mHabit, Float.valueOf(mHabitCountEditText.getText().toString()));
+    dismissWithAnimation();
   }
 
   private void detachListeners() {
