@@ -34,6 +34,7 @@ public class Habit {
   private String mEmojiCode;
   private float mTotalHabitCount;
   private long mCreatedAtMillis;
+  private int mHabitColor;
 
   public Habit() {}
 
@@ -50,8 +51,9 @@ public class Habit {
     mCreatedAtMillis = System.currentTimeMillis();
   }
 
-  public static void createNewHabitOnFirestore(String habitName) {
+  public static void createNewHabitOnFirestore(String habitName, int habitColor) {
     Habit newHabit = new Habit(habitName, "");
+    newHabit.setHabitColor(habitColor);
     newHabit.saveHabitToFirestore(null);
   }
 
@@ -138,5 +140,13 @@ public class Habit {
 
   public void setCreatedAtMillis(long createdAtMillis) {
     mCreatedAtMillis = createdAtMillis;
+  }
+
+  public int getHabitColor() {
+    return mHabitColor;
+  }
+
+  public void setHabitColor(int mHabitColor) {
+    this.mHabitColor = mHabitColor;
   }
 }

@@ -26,6 +26,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     private EditText mHabitNameEditText;
     private View mBlackBackground;
     private View mMainDialogContainer;
+    private int habitColor = R.color.muted_red;
 
     public static NewHabitFragment newInstance() {
         return new NewHabitFragment();
@@ -109,7 +110,8 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
                     return;
                 }
 
-                Habit.createNewHabitOnFirestore(habitName);
+
+                Habit.createNewHabitOnFirestore(habitName, habitColor);
                 dismissWithAnimation();
             }
         });
@@ -123,5 +125,6 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     @Override
     public void onColorSelected(int color) {
         mSubmitButton.setBackgroundColor(0xff000000 + color);
+        habitColor = color;
     }
 }
