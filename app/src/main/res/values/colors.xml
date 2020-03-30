@@ -35,6 +35,16 @@
     <color name="evening_blue_dark_border_theme">#5272C6</color>
     <color name="evening_blue_wash_border_theme">#EDF0F8</color>
 
+    <!--  Habit dialog colors -->
+    <color name="dialog_muted_red">#D29A9A</color>
+    <color name="dialog_muted_yellow">#D2C593</color>
+    <color name="dialog_muted_blue">#A4CBCB</color>
+    <color name="dialog_muted_orange">#D2B29A</color>
+    <color name="dialog_muted_green_two">#B7CBA4</color>
+    <color name="dialog_muted_purple">#B0AEC4</color>
+    <color name="dialog_muted_green_three">#B2D6C3</color>
+    <color name="dialog_muted_green_pink">#E1C8D9</color>
+
     <color name="sidebar_share_button">#AEC6FD</color>
     <color name="sidebar_share_button_dark">#89B8E7</color>
     <color name="sidebar_copy_button">#F6CD76</color>
