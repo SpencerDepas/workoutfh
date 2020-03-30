@@ -32,12 +32,12 @@ public class HabitRecord {
   private String mUserEmail;
   private String mYearMonthDay;
   private String mHabitId;
-  private int mHabitCount;
+  private float mHabitCount;
   private long mCreatedAtMillis;
 
   public HabitRecord() {}
 
-  public HabitRecord(Calendar calendar, String habitId, int habitCount) {
+  public HabitRecord(Calendar calendar, String habitId, float habitCount) {
     mId = FirestoreUtil.generateId(getHabitRecordCollection());
     mUserEmail = AuthenticationUtil.getUserEmail();
     mHabitId = habitId;
@@ -46,7 +46,7 @@ public class HabitRecord {
     mCreatedAtMillis = System.currentTimeMillis();
   }
 
-  public static void createNewHabitRecordOnFirestore(Habit habit, int habitCount) {
+  public static void createNewHabitRecordOnFirestore(Habit habit, float habitCount) {
     HabitRecord habitRecord = new HabitRecord(Calendar.getInstance(), habit.getId(), habitCount);
     habitRecord.saveHabitRecordToFirestore(null);
   }
@@ -130,11 +130,11 @@ public class HabitRecord {
     mHabitId = habitId;
   }
 
-  public int getHabitCount() {
+  public float getHabitCount() {
     return mHabitCount;
   }
 
-  public void setHabitCount(int habitCount) {
+  public void setHabitCount(float habitCount) {
     mHabitCount = habitCount;
   }
 

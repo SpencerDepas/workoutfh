@@ -87,7 +87,7 @@ public class RecordHabitFragment extends FloatingBaseFragment {
     mHabitRecordButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        HabitRecord.createNewHabitRecordOnFirestore(mHabit, Integer.valueOf(mHabitCountEditText.getText().toString()));
+        HabitRecord.createNewHabitRecordOnFirestore(mHabit, Float.valueOf(mHabitCountEditText.getText().toString()));
         dismissWithAnimation();
       }
     });

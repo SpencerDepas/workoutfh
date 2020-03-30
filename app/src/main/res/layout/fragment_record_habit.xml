@@ -36,7 +36,7 @@
             android:hint="0"
             android:textColorHint="@color/whitetoblack_20"
             android:textSize="40sp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             app:fontface="avenir_next_demibold"
             />
         <FrameLayout

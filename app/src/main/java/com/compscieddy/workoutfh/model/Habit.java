@@ -32,7 +32,7 @@ public class Habit {
   private String mUserEmail;
   private String mHabitName;
   private String mEmojiCode;
-  private int mTotalHabitCount;
+  private float mTotalHabitCount;
   private long mCreatedAtMillis;
 
   public Habit() {}
@@ -124,11 +124,11 @@ public class Habit {
     mEmojiCode = emojiCode;
   }
 
-  public int getTotalHabitCount() {
+  public float getTotalHabitCount() {
     return mTotalHabitCount;
   }
 
-  public void setTotalHabitCount(int totalHabitCount) {
+  public void setTotalHabitCount(float totalHabitCount) {
     mTotalHabitCount = totalHabitCount;
   }
 

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:letterSpacing="-0.01"
+                android:letterSpacing="-0.05"
                 app:fontface="avenir_next_bold"
                 />
             <LinearLayout
@@ -47,7 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:text="--"
+                    android:text="-"
+                    android:textColor="@color/black"
                     app:fontface="avenir_next_bold"
                     />
                 <androidx.recyclerview.widget.RecyclerView
