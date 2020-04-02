@@ -22,11 +22,11 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     public static final String TAG = NewHabitFragment.class.getSimpleName();
     private View mRootView;
     private View mSubmitButton;
-    private RecyclerView mRecyclerView;
+    private RecyclerView mColorRecyclerView;
     private EditText mHabitNameEditText;
     private View mBlackBackground;
     private View mMainDialogContainer;
-    private int habitColor = R.color.muted_red;
+    @ColorRes private int habitColor = R.color.muted_red;
 
     public static NewHabitFragment newInstance() {
         return new NewHabitFragment();
@@ -73,7 +73,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
         mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
         mBlackBackground = mRootView.findViewById(R.id.black_background);
         mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
-        mRecyclerView = mRootView.findViewById(R.id.mtrl_colors);
+        mColorRecyclerView = mRootView.findViewById(R.id.mtrl_colors);
         initRvAdapter();
     }
 
@@ -81,8 +81,8 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
 
         LinearLayoutManager horizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_colors), this);
-        mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setLayoutManager(horizontalLayout);
+        mColorRecyclerView.setAdapter(adapter);
+        mColorRecyclerView.setLayoutManager(horizontalLayout);
     }
 
     private void attachListeners() {
