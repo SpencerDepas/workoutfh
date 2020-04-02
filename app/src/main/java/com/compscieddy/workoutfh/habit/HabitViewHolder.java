@@ -52,13 +52,10 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void init() {
-    mHabitRecordButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        RecordHabitFragment recordHabitFragment = RecordHabitFragment.newInstance();
-        recordHabitFragment.setHabit(mHabit);
-        recordHabitFragment.show(mChildFragmentManager, RecordHabitFragment.TAG);
-      }
+    mHabitRecordButton.setOnClickListener(v -> {
+      RecordHabitFragment recordHabitFragment = RecordHabitFragment.newInstance();
+      recordHabitFragment.setHabit(mHabit);
+      recordHabitFragment.show(mChildFragmentManager, RecordHabitFragment.TAG);
     });
   }
 
@@ -69,7 +66,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void initHabitRecordRecyclerView() {
-    FirestoreRecyclerAdapter habitRecordRecyclerAdapter = new HabitRecordRecyclerAdapter(mChildFragmentManager, mHabit.getId(),mHabit.getHabitColor() );
+    FirestoreRecyclerAdapter habitRecordRecyclerAdapter = new HabitRecordRecyclerAdapter(mChildFragmentManager, mHabit.getId(), mHabit.getHabitColor());
     habitRecordRecyclerAdapter.startListening();
     mFirestoreRecyclerAdapterListenerHelper.addFirestoreRecyclerAdapterForListeningCallbacks(habitRecordRecyclerAdapter);
     mHabitRecordRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
