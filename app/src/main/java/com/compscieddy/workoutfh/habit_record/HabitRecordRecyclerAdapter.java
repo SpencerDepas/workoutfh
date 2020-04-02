@@ -8,13 +8,14 @@ import com.compscieddy.workoutfh.model.HabitRecord;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
 public class HabitRecordRecyclerAdapter extends FirestoreRecyclerAdapter<HabitRecord, HabitRecordViewHolder> {
 
   private FragmentManager mChildFragmentManager;
-  private int mHabitColorId;
+  @ColorRes private int mHabitColorId;
 
   public HabitRecordRecyclerAdapter(FragmentManager childFragmentManager, String habitId, int habitColorId) {
     super(
