@@ -16,11 +16,8 @@ import butterknife.ButterKnife;
 
 public class ColorPickerViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.color_item)
-    RelativeLayout mColorItem;
-
-    @BindView(R.id.clickable_color_item)
-    Button mClickableColorItem;
+    @BindView(R.id.color_item) RelativeLayout mColorItem;
+    @BindView(R.id.clickable_color_item) Button mClickableColorItem;
 
     private int color;
 
