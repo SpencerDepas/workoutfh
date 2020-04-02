@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.widget.EditText;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +27,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     private EditText mHabitNameEditText;
     private View mBlackBackground;
     private View mMainDialogContainer;
-    private int habitColor = R.color.muted_red;
+    @ColorInt private int habitColor = 0;
 
     public static NewHabitFragment newInstance() {
         return new NewHabitFragment();
@@ -113,7 +114,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     }
 
     @Override
-    public void onColorSelected(int color) {
+    public void onColorSelected(@ColorInt int color) {
         mSubmitButton.setBackgroundColor(0xff000000 + color);
         habitColor = color;
     }

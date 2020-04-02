@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -34,7 +35,7 @@ public class Habit {
   private String mEmojiCode;
   private float mTotalHabitCount;
   private long mCreatedAtMillis;
-  private int mHabitColor;
+  @ColorInt private int mHabitColor;
 
   public Habit() {}
 
@@ -51,7 +52,7 @@ public class Habit {
     mCreatedAtMillis = System.currentTimeMillis();
   }
 
-  public static void createNewHabitOnFirestore(String habitName, int habitColor) {
+  public static void createNewHabitOnFirestore(String habitName, @ColorInt int habitColor) {
     Habit newHabit = new Habit(habitName, "");
     newHabit.setHabitColor(habitColor);
     newHabit.saveHabitToFirestore(null);
@@ -142,11 +143,11 @@ public class Habit {
     mCreatedAtMillis = createdAtMillis;
   }
 
-  public int getHabitColor() {
+  public @ColorInt int getHabitColor() {
     return mHabitColor;
   }
 
-  public void setHabitColor(int mHabitColor) {
+  public void setHabitColor( @ColorInt int mHabitColor) {
     this.mHabitColor = mHabitColor;
   }
 }
