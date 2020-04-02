@@ -36,6 +36,6 @@ public class HabitRecordRecyclerAdapter extends FirestoreRecyclerAdapter<HabitRe
 
   @Override
   protected void onBindViewHolder(@NonNull HabitRecordViewHolder holder, int position, @NonNull HabitRecord model) {
-    holder.setModel(model, mHabitColorId);
+    holder.setHabitRecordModel(model, mHabitColorId);
   }
 }

@@ -28,7 +28,7 @@ public class HabitRecordViewHolder extends RecyclerView.ViewHolder {
     init();
   }
 
-  void setModel(HabitRecord habitRecord, int colorId) {
+  void setHabitRecordModel(HabitRecord habitRecord, int colorId) {
     mHabitRecord = habitRecord;
     mHabitColorId = colorId;
     initHabitRecord();
