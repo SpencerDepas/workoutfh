@@ -26,7 +26,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     private EditText mHabitNameEditText;
     private View mBlackBackground;
     private View mMainDialogContainer;
-    @ColorRes private int habitColor = R.color.muted_red;
+    private int habitColor = R.color.muted_red;
 
     public static NewHabitFragment newInstance() {
         return new NewHabitFragment();
@@ -85,29 +85,26 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     }
 
     private void attachListeners() {
-        mSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String habitName = mHabitNameEditText.getText().toString();
+        mSubmitButton.setOnClickListener(v -> {
+            String habitName = mHabitNameEditText.getText().toString();
 
-                if (TextUtils.isEmpty(habitName)) {
-                    mHabitNameEditText.animate()
-                            .setDuration(300)
-                            .scaleX(1.2f)
-                            .scaleY(1.2f)
-                            .setInterpolator(new BounceInterpolator())
-                            .withEndAction(() -> mHabitNameEditText.animate()
-                                    .setDuration(300)
-                                    .scaleX(1.0f)
-                                    .scaleY(1.0f)
-                                    .setInterpolator(new BounceInterpolator()));
-                    return;
-                }
-
-
-                Habit.createNewHabitOnFirestore(habitName, habitColor);
-                dismissWithAnimation();
+            if (TextUtils.isEmpty(habitName)) {
+                mHabitNameEditText.animate()
+                        .setDuration(300)
+                        .scaleX(1.2f)
+                        .scaleY(1.2f)
+                        .setInterpolator(new BounceInterpolator())
+                        .withEndAction(() -> mHabitNameEditText.animate()
+                                .setDuration(300)
+                                .scaleX(1.0f)
+                                .scaleY(1.0f)
+                                .setInterpolator(new BounceInterpolator()));
+                return;
             }
+
+
+            Habit.createNewHabitOnFirestore(habitName, habitColor);
+            dismissWithAnimation();
         });
     }
 
