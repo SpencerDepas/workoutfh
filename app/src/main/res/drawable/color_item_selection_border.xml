@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item android:state_focused="true" android:state_selected="true">
-        <shape    android:shape="oval">
+        <shape android:shape="oval">
             <stroke android:width="@dimen/circle_select_stroke" android:color="@color/selected_circle_item" />
         </shape>
     </item>
     <item android:state_focused="true" android:state_selected="false">
-        <shape    android:shape="oval">
+        <shape android:shape="oval">
             <stroke android:width="@dimen/circle_select_stroke" android:color="@color/selected_circle_item" />
         </shape>
     </item>
     <item android:state_focused="false" android:state_selected="true">
-        <shape    android:shape="oval">
+        <shape android:shape="oval">
             <stroke android:width="@dimen/circle_select_stroke" android:color="@color/selected_circle_item" />
         </shape>
     </item>
-
 </selector>
