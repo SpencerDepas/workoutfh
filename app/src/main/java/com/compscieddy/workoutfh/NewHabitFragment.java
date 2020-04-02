@@ -73,7 +73,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
         mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
         mBlackBackground = mRootView.findViewById(R.id.black_background);
         mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
-        mColorRecyclerView = mRootView.findViewById(R.id.mtrl_colors);
+        mColorRecyclerView = mRootView.findViewById(R.id.color_selector_recyclerview);
         initColorAdapter();
     }
 
