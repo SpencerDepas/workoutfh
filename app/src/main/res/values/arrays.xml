@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <array name="habit_dialog_colors">
+    <array name="habit_colors">
         <item name="dialog_muted_red" type="color">#D29A9A</item>
         <item name="dialog_muted_yellow" type="color">#D2C593</item>
         <item name="dialog_muted_blue" type="color">#A4CBCB</item>

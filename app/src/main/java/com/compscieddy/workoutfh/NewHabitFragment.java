@@ -80,7 +80,7 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     private void initRvAdapter() {
 
         LinearLayoutManager horizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_dialog_colors), this);
+        ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_colors), this);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(horizontalLayout);
     }
@@ -97,16 +97,11 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
                             .scaleX(1.2f)
                             .scaleY(1.2f)
                             .setInterpolator(new BounceInterpolator())
-                            .withEndAction(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mHabitNameEditText.animate()
-                                            .setDuration(300)
-                                            .scaleX(1.0f)
-                                            .scaleY(1.0f)
-                                            .setInterpolator(new BounceInterpolator());
-                                }
-                            });
+                            .withEndAction(() -> mHabitNameEditText.animate()
+                                    .setDuration(300)
+                                    .scaleX(1.0f)
+                                    .scaleY(1.0f)
+                                    .setInterpolator(new BounceInterpolator()));
                     return;
                 }
 
