@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.compscieddy.workoutfh.R;
 
+/** This is the adapter for showing the list of colors for users to select in the new habit dialog. */
+
 public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPickerViewHolder> {
 
     private int[] mColors;
