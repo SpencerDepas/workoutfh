@@ -37,7 +37,7 @@ public class ColorPickerViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initHabitRecord() {
-        GradientDrawable gradientDrawable = (GradientDrawable) mColorItem.getContext().getResources().getDrawable(R.drawable.color_picker_circle)
+        GradientDrawable gradientDrawable = (GradientDrawable) mColorItem.getContext().getResources().getDrawable(R.drawable.color_picker_circle);
         gradientDrawable.setColor(color);
         mColorItem.setBackground(gradientDrawable);
     }
