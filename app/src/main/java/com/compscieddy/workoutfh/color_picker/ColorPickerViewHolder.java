@@ -1,6 +1,5 @@
 package com.compscieddy.workoutfh.color_picker;
 
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.Button;
