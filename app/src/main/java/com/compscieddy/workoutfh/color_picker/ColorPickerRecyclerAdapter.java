@@ -12,11 +12,11 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
 
     private int[] mColors;
 
-    private ColorPickerCallBack mCallback;
+    private ColorPickerCallBack mColorPickerCallback;
 
     public ColorPickerRecyclerAdapter(int[] colors, ColorPickerCallBack callback) {
         mColors = colors;
-        mCallback = callback;
+        mColorPickerCallback = callback;
     }
 
     @NonNull
@@ -30,7 +30,7 @@ public class ColorPickerRecyclerAdapter extends RecyclerView.Adapter<ColorPicker
     public void onBindViewHolder(@NonNull ColorPickerViewHolder holder, int position) {
         holder.setColor(mColors[position]);
         holder.mClickableColorItem.setOnClickListener(v -> {
-            mCallback.onColorSelected(mColors[position]);
+            mColorPickerCallback.onColorSelected(mColors[position]);
         });
     }
 
