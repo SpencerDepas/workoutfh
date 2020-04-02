@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 public class HabitRecordRecyclerAdapter extends FirestoreRecyclerAdapter<HabitRecord, HabitRecordViewHolder> {
 
   private FragmentManager mChildFragmentManager;
-
   private int mHabitColorId;
 
   public HabitRecordRecyclerAdapter(FragmentManager childFragmentManager, String habitId, int habitColorId) {
