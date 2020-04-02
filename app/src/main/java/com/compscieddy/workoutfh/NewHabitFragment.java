@@ -78,10 +78,9 @@ public class NewHabitFragment extends FloatingBaseFragment implements ColorPicke
     }
 
     private void initColorAdapter() {
-        LinearLayoutManager horizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_colors), this);
         mColorRecyclerView.setAdapter(adapter);
-        mColorRecyclerView.setLayoutManager(horizontalLayout);
+        mColorRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void attachListeners() {
