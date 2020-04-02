@@ -9,9 +9,7 @@
         android:id="@+id/color_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/muted_red"
         android:focusable="false"
-        android:focusableInTouchMode="false"
         >
 
         <Button
@@ -21,6 +19,7 @@
             android:background="@drawable/color_item_selection_border"
             android:clickable="true"
             android:focusable="true"
+            android:focusableInTouchMode="true"
             />
 
     </RelativeLayout>
