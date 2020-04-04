@@ -2,17 +2,17 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true" android:state_selected="true">
         <shape android:shape="oval">
-            <stroke android:width="@dimen/circle_select_stroke" android:color="@color/color_picker_selected_circle_item" />
+            <stroke android:width="@dimen/color_picker_circle_selected_stroke" android:color="@color/color_picker_selected_circle_item" />
         </shape>
     </item>
     <item android:state_focused="true" android:state_selected="false">
         <shape android:shape="oval">
-            <stroke android:width="@dimen/circle_select_stroke" android:color="@color/color_picker_selected_circle_item" />
+            <stroke android:width="@dimen/color_picker_circle_selected_stroke" android:color="@color/color_picker_selected_circle_item" />
         </shape>
     </item>
     <item android:state_focused="false" android:state_selected="true">
         <shape android:shape="oval">
-            <stroke android:width="@dimen/circle_select_stroke" android:color="@color/color_picker_selected_circle_item" />
+            <stroke android:width="@dimen/color_picker_circle_selected_stroke" android:color="@color/color_picker_selected_circle_item" />
         </shape>
     </item>
 </selector>

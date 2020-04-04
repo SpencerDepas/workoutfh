@@ -20,102 +20,103 @@ import com.compscieddy.workoutfh.ui.FloatingBaseFragment;
 
 public class NewHabitFragment extends FloatingBaseFragment implements ColorPickerRecyclerAdapter.ColorPickerCallBack {
 
-    public static final String TAG = NewHabitFragment.class.getSimpleName();
-    private View mRootView;
-    private View mSubmitButton;
-    private RecyclerView mColorRecyclerView;
-    private EditText mHabitNameEditText;
-    private View mBlackBackground;
-    private View mMainDialogContainer;
-    @ColorInt private int habitColor = 0;
+  public static final String TAG = NewHabitFragment.class.getSimpleName();
+  private View mRootView;
+  private View mSubmitButton;
+  private RecyclerView mColorRecyclerView;
+  private EditText mHabitNameEditText;
+  private View mBlackBackground;
+  private View mMainDialogContainer;
+  @ColorInt
+  private int habitColor = 0;
 
-    public static NewHabitFragment newInstance() {
-        return new NewHabitFragment();
-    }
+  public static NewHabitFragment newInstance() {
+    return new NewHabitFragment();
+  }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_new_habit, container, false);
-        /** ButterKnife does not appear to work, debugging was proving to be a waste of time. */
-        initViews();
-        return mRootView;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    mRootView = inflater.inflate(R.layout.fragment_new_habit, container, false);
+    /** ButterKnife does not appear to work, debugging was proving to be a waste of time. */
+    initViews();
+    return mRootView;
+  }
 
-    @Override
-    public View getBlackBackground() {
-        return mBlackBackground;
-    }
+  @Override
+  public View getBlackBackground() {
+    return mBlackBackground;
+  }
 
-    @Override
-    public View getMainDialogContainer() {
-        return mMainDialogContainer;
-    }
+  @Override
+  public View getMainDialogContainer() {
+    return mMainDialogContainer;
+  }
 
-    @Override
-    public View getKeyboardFocusView() {
-        return mHabitNameEditText;
-    }
+  @Override
+  public View getKeyboardFocusView() {
+    return mHabitNameEditText;
+  }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        attachListeners();
-    }
+  @Override
+  public void onResume() {
+    super.onResume();
+    attachListeners();
+  }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        detachListeners();
-    }
+  @Override
+  public void onPause() {
+    super.onPause();
+    detachListeners();
+  }
 
-    private void initViews() {
-        mSubmitButton = mRootView.findViewById(R.id.new_habit_submit_button);
-        mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
-        mBlackBackground = mRootView.findViewById(R.id.black_background);
-        mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
-        mColorRecyclerView = mRootView.findViewById(R.id.color_selector_recyclerview);
-        initColorAdapter();
-    }
+  private void initViews() {
+    mSubmitButton = mRootView.findViewById(R.id.new_habit_submit_button);
+    mHabitNameEditText = mRootView.findViewById(R.id.new_habit_name_input);
+    mBlackBackground = mRootView.findViewById(R.id.black_background);
+    mMainDialogContainer = mRootView.findViewById(R.id.main_dialog_container);
+    mColorRecyclerView = mRootView.findViewById(R.id.color_selector_recyclerview);
+    initColorAdapter();
+  }
 
-    private void initColorAdapter() {
-        ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_colors), this);
-        mColorRecyclerView.setAdapter(adapter);
-        mColorRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-    }
+  private void initColorAdapter() {
+    ColorPickerRecyclerAdapter adapter = new ColorPickerRecyclerAdapter(getResources().getIntArray(R.array.habit_colors), this);
+    mColorRecyclerView.setAdapter(adapter);
+    mColorRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+  }
 
-    private void attachListeners() {
-        mSubmitButton.setOnClickListener(v -> {
-            String habitName = mHabitNameEditText.getText().toString();
+  private void attachListeners() {
+    mSubmitButton.setOnClickListener(v -> {
+      String habitName = mHabitNameEditText.getText().toString();
 
-            if (TextUtils.isEmpty(habitName)) {
-                mHabitNameEditText.animate()
-                        .setDuration(300)
-                        .scaleX(1.2f)
-                        .scaleY(1.2f)
-                        .setInterpolator(new BounceInterpolator())
-                        .withEndAction(() -> mHabitNameEditText.animate()
-                                .setDuration(300)
-                                .scaleX(1.0f)
-                                .scaleY(1.0f)
-                                .setInterpolator(new BounceInterpolator()));
-                return;
-            }
+      if (TextUtils.isEmpty(habitName)) {
+        mHabitNameEditText.animate()
+            .setDuration(300)
+            .scaleX(1.2f)
+            .scaleY(1.2f)
+            .setInterpolator(new BounceInterpolator())
+            .withEndAction(() -> mHabitNameEditText.animate()
+                .setDuration(300)
+                .scaleX(1.0f)
+                .scaleY(1.0f)
+                .setInterpolator(new BounceInterpolator()));
+        return;
+      }
 
 
-            Habit.createNewHabitOnFirestore(habitName, habitColor);
-            dismissWithAnimation();
-        });
-    }
+      Habit.createNewHabitOnFirestore(habitName, habitColor);
+      dismissWithAnimation();
+    });
+  }
 
-    private void detachListeners() {
-        mSubmitButton.setOnClickListener(null);
-        mBlackBackground.setOnClickListener(null);
-    }
+  private void detachListeners() {
+    mSubmitButton.setOnClickListener(null);
+    mBlackBackground.setOnClickListener(null);
+  }
 
-    @Override
-    public void onColorSelected(@ColorInt int color) {
-        mSubmitButton.setBackgroundColor(0xff000000 + color);
-        habitColor = color;
-    }
+  @Override
+  public void onColorSelected(@ColorInt int color) {
+    mSubmitButton.setBackgroundColor(0xff000000 + color);
+    habitColor = color;
+  }
 }

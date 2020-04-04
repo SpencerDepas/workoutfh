@@ -82,7 +82,6 @@
                 android:textColor="@color/standard_faded_text_color"
                 />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/color_selector_recyclerview"

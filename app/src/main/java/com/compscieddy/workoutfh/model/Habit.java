@@ -147,7 +147,7 @@ public class Habit {
     return mHabitColor;
   }
 
-  public void setHabitColor( @ColorInt int mHabitColor) {
+  public void setHabitColor(@ColorInt int mHabitColor) {
     this.mHabitColor = mHabitColor;
   }
 }
